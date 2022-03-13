@@ -1,0 +1,47 @@
+nav{
+    background-image: url("./../assets/banner.jpg") !important;
+    height: 4em!important;
+}
+
+header{
+    margin-top: 2em !important;
+}
+
+.btn-edit{
+    background-color: #ffc2f6;
+    color: black;
+    border-color: transparent;
+}
+
+.btn-delete{
+    background-color: black;
+    color: white;
+    border-color: transparent;
+}
+
+table{
+    margin-top: 3em !important;
+    border-radius: 0.5em !important;
+}
+
+thead{
+    background-color: black;
+    color: white;
+}
+
+input{
+    border-radius: 0.5em;
+    margin-top: 1em;
+    width: 50vw;
+    display: list-item;
+}
+
+form.label{
+    margin-top: 1em;
+    font-weight: bold;
+}
+
+input[type="submit"]{
+    background-color: black;
+    color: white;
+}
