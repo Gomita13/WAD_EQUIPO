@@ -10,7 +10,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d594fd3-7387-427b-9867-cc4ea8fc7d67" name="Changes" comment="" />
+    <list default="true" id="7d594fd3-7387-427b-9867-cc4ea8fc7d67" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/lib/mysql-connector-java-8.0.28.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/lib/protobuf-java-3.11.4.jar" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,7 +153,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647279958258</updated>
-      <workItem from="1647279959392" duration="959000" />
+      <workItem from="1647279959392" duration="1456000" />
     </task>
     <servers />
   </component>
