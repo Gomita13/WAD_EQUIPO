@@ -11,7 +11,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/META-INF/context.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/controlador/carrera/AgregarServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/controlador/carrera/ListadoServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/controlador/carrera/VerCarreraServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/modelo/dao/Alumno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/modelo/dto/CarreraDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/modelo/entidades/Alumno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/classes/com/ipn/mx/modelo/entidades/Carrera.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-8.0.28.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/lib/protobuf-java-3.11.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/carrera/nuevo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
