@@ -1,9 +1,8 @@
-<%@ page import="modelo.dto.CarreraDTO" %>
-<%@ page import="modelo.dao.CarreraDAO" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: gamma
-  Date: 12/03/2022
-  Time: 00:54
+  Date: 11/03/2022
+  Time: 16:40
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -28,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="agregar.jsp">Agregar</a>
+                        <a class="nav-link active" href="agregarCarrera.jsp">Agregar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="carreras.jsp">Listar Carreras</a>
@@ -43,38 +42,13 @@
     <div class="row">
         <div class="w-50 mx-auto">
             <header>
-                <h1>Datos de la carrera</h1>
+                <h1>Registrar una nueva carrera</h1>
             </header>
-            <main>
-                <%
-                    CarreraDTO dto = new CarreraDTO();
-                    CarreraDTO carrera = new CarreraDTO();
-                    CarreraDAO dao = new CarreraDAO();
-                    int id = Integer.parseInt((String)request.getParameter("id"));
-                    dto.getEntidad().setIdCarrera(id);
-                    carrera = dao.read(dto);
-                %>
-                <form method="post" action="ActualizarServlet">
-                    <div class="mb-3">
-                        <label class="form-label">ID de la Carrera</label>
-                        <input type="text" name="idCarrera" value="<%= carrera.getEntidad().getIdCarrera()%>" class="form-control" placeholder="ID de la carrera" maxlength="50" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Nombre de la Carrera</label>
-                        <input type="text" name="nombreCarrera" value="<%= carrera.getEntidad().getNombreCarrera()%>" class="form-control" placeholder="Nombre de la carrera" maxlength="50" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Descripción de la Carrera</label>
-                        <input type="text" name="descripcionCarrera" value="<%= carrera.getEntidad().getDescripcionCarrera()%>" class="form-control" placeholder="Descripción de la carrera" maxlength="50" required>
-                    </div>
-                    <div class="mb-3">
-                        <input type="submit" name="action" value="Actualizar" class="btn btn-secondary">
-                    </div>
-                </form>
-            </main>
-            <footer>
-
-            </footer>
+            <form action="AgregarServlet" method="post">
+                <label>Nombre de la carrera: </label><input type="text" name="nombreCarrera" id="nombreCarrera">
+                <label>Descripción de la carrera:</label><input type="text" name="descripcionCarrera" id="descripcionCarrera">
+                <input type="submit" value="Enviar">
+            </form>
         </div>
     </div>
 </body>

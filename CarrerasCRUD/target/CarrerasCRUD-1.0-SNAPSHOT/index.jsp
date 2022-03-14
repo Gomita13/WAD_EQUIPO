@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="agregar.jsp">Agregar</a>
+                        <a class="nav-link active" href="agregarCarrera.jsp">Agregar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="carreras.jsp">Listar Carreras</a>
