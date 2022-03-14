@@ -10,7 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="" />
+    <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/CarreraDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/CarreraDAO.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
