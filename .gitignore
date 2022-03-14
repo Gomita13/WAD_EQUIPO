@@ -1,1 +1,4 @@
 *.zip
+.idea/workspace.xml
+target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-8.0.28.jar
+target/ProyectoBase_V1-1.0-SNAPSHOT/WEB-INF/lib/protobuf-java-3.11.4.jar
