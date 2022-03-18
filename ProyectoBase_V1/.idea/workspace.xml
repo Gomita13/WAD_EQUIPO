@@ -10,7 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="" />
+    <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,7 +49,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -152,6 +154,9 @@
       <updated>1647279958258</updated>
       <workItem from="1647279959392" duration="626000" />
       <workItem from="1647389927636" duration="4366000" />
+      <workItem from="1647492328172" duration="1692000" />
+      <workItem from="1647617364154" duration="29000" />
+      <workItem from="1647617650485" duration="1285000" />
     </task>
     <servers />
   </component>
