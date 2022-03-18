@@ -11,7 +11,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/Alumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/Alumno.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/Alumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/Alumno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/CarreraDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/CarreraDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dto/AlumnoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dto/AlumnoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +31,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -49,12 +68,23 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\eflor\Documents\ESCOM papeles\Semestre 7\WEB APP\WAD_EQUIPO\ProyectoBase_V1\src\main\webapp\carrera\css" />
+      <recent name="C:\Users\eflor\Documents\ESCOM papeles\Semestre 7\WEB APP\WAD_EQUIPO\ProyectoBase_V1\src\main\webapp\carrera" />
+      <recent name="C:\Users\eflor\Documents\ESCOM papeles\Semestre 7\WEB APP\WAD_EQUIPO\ProyectoBase_V1\src\main\java\com\ipn\mx\controlador\carrera" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ipn.mx.controlador.carrera" />
+      <recent name="controlador.alumno" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="TomEE plus 9.0.0" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE plus 9.0.0" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="TomEE plus 9.0.0" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 10.0.4" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="ProyectoBase_V1:war exploded">
@@ -153,6 +183,10 @@
       <updated>1647279958258</updated>
       <workItem from="1647279959392" duration="626000" />
       <workItem from="1647389927636" duration="1926000" />
+      <workItem from="1647398899735" duration="1436000" />
+      <workItem from="1647471069322" duration="15585000" />
+      <workItem from="1647566339541" duration="1187000" />
+      <workItem from="1647615308498" duration="15445000" />
     </task>
     <servers />
   </component>

@@ -37,7 +37,6 @@ public class AlumnoDTO implements Serializable {
         sb.append("Materno : ").append(getEntidad().getMaternoAlumno()).append("\n");
         sb.append("Email : ").append(getEntidad().getEmailAlumno()).append("\n");
         sb.append("Clave Carrera  : ").append(getEntidad().getIdCarrera()).append("\n");
-        //sb.append("Clave Carrera  : ").append(getEntidad().getIdCarrera().getIdCarrera).append("\n");
         
         return sb.toString();
     }
