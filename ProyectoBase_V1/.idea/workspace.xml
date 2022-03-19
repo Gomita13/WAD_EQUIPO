@@ -3,18 +3,60 @@
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="ProyectoBase_V1:war exploded" />
-      <artifact name="ProyectoBase_V1:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="" />
+    <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/AgregarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/AgregarServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/ListadoServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/ListadoServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/VerCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/VerCarreraServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/CarreraDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/CarreraDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/entidades/Alumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/entidades/Alumno.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/entidades/Carrera.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/entidades/Carrera.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/ListadoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/ListadoServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/VerCarreraServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/VerCarreraServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/Alumno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/AgregarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/AgregarServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/ListadoServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/ListadoServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/VerCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/VerCarreraServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/Alumno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dto/CarreraDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dto/CarreraDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/entidades/Alumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/entidades/Alumno.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/entidades/Carrera.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/entidades/Carrera.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Jsp File" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -51,13 +93,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
@@ -82,7 +125,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="6aaf019c-a343-4973-b764-24b6ea67b482" />
+        <option name="BASE_DIRECTORY_NAME" value="7edb921c-2442-4cdb-9412-ff085a119997" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -90,7 +133,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="58378" />
+        <option name="DEBUG_PORT" value="52296" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -156,10 +199,100 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="ProyectoBase_V1:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.58" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.58" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="ProyectoBase_V1:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/ProyectoBase_V1_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="734e139f-4399-43df-b7d1-eabc7f685668" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="61775" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
           <artifact name="ProyectoBase_V1:war exploded" />
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
+      <item itemvalue="TomEE Server.TomEE 10.0.4" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -171,10 +304,24 @@
       <updated>1647279958258</updated>
       <workItem from="1647279959392" duration="626000" />
       <workItem from="1647389927636" duration="4366000" />
+      <workItem from="1647492328172" duration="1692000" />
+      <workItem from="1647617364154" duration="29000" />
+      <workItem from="1647617650485" duration="1285000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

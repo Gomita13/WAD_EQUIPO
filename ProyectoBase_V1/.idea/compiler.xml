@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ProyectoBase_V1" options="-endorseddirs &quot;D:\ESCOM\8vo semestre\WAD\WAD_EQUIPO\ProyectoBase_V1\target/endorsed&quot;" />
+      <module name="ProyectoBase_V1" options="-endorseddirs D:\Documents\Programs\Java\WAD_EQUIPO\ProyectoBase_V1\target/endorsed" />
     </option>
   </component>
 </project>
