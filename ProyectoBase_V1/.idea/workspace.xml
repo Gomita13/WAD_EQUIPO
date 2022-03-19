@@ -114,7 +114,7 @@
       <recent name="controlador.alumno" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.58">
     <configuration name="TomEE plus 9.0.0" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 10.0.4" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -291,7 +291,7 @@
     </configuration>
     <list>
       <item itemvalue="Tomcat Server.Tomcat 9.0.58" />
-      <item itemvalue="TomEE Server.TomEE 10.0.4" />
+      <item itemvalue="TomEE Server.TomEE plus 9.0.0" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
