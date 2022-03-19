@@ -30,7 +30,7 @@ public class Alumno {
         //obtener conexion
         String usuario = "root";
         String clave = "";
-        String url = "jdbc:mysql://localhost:3307/EscuelaWeb?serverTimezone=America/Mexico_City&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&useSSL=false";
+        String url = "jdbc:mysql://localhost:3306/EscuelaWeb?serverTimezone=America/Mexico_City&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&useSSL=false";
         String driverBD = "com.mysql.cj.jdbc.Driver";
 
         try {
