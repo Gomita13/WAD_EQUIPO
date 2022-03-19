@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
+<<<<<<< HEAD
+Built-By: eflor
+Build-Jdk: Oracle OpenJDK version 13.0.2
+=======
 Built-By: gamma
 Build-Jdk: Oracle OpenJDK version 1.8.0_301
+>>>>>>> Gama
 

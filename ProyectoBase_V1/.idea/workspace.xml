@@ -100,11 +100,22 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager" selected="TomEE Server.TomEE 10.0.4">
-    <configuration name="TomEE 10.0.4" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 10.0.4" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\eflor\Documents\ESCOM papeles\Semestre 7\WEB APP\WAD_EQUIPO\ProyectoBase_V1\src\main\webapp\carrera\css" />
+      <recent name="C:\Users\eflor\Documents\ESCOM papeles\Semestre 7\WEB APP\WAD_EQUIPO\ProyectoBase_V1\src\main\webapp\carrera" />
+      <recent name="C:\Users\eflor\Documents\ESCOM papeles\Semestre 7\WEB APP\WAD_EQUIPO\ProyectoBase_V1\src\main\java\com\ipn\mx\controlador\carrera" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ipn.mx.controlador.carrera" />
+      <recent name="controlador.alumno" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TomEE plus 9.0.0" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 10.0.4" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="ProyectoBase_V1:war exploded">
@@ -293,12 +304,9 @@
       <updated>1647279958258</updated>
       <workItem from="1647279959392" duration="626000" />
       <workItem from="1647389927636" duration="4366000" />
-      <workItem from="1647405704859" duration="3652000" />
-      <workItem from="1647485309345" duration="3660000" />
-      <workItem from="1647491455990" duration="2391000" />
-      <workItem from="1647574121475" duration="1272000" />
-      <workItem from="1647589193812" duration="2682000" />
-      <workItem from="1647654455046" duration="5193000" />
+      <workItem from="1647492328172" duration="1692000" />
+      <workItem from="1647617364154" duration="29000" />
+      <workItem from="1647617650485" duration="1285000" />
     </task>
     <servers />
   </component>
