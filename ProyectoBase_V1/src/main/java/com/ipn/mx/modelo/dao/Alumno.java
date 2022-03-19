@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  * @author darkdestiny
  */
 public class Alumno {
+    private static final String SQL_DELETE = "delete from Alumno where idAlumno = ?";
     private static final String SQL_SELECT_ALL = "select * from Alumno";
 
     private Connection conexion;
@@ -37,6 +38,23 @@ public class Alumno {
             conexion = DriverManager.getConnection(url, usuario, clave);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CarreraDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void delete(AlumnoDTO dto) throws SQLException {
+        obtenerConexion();
+        PreparedStatement ps = null;
+        try {
+            ps = conexion.prepareStatement(SQL_DELETE);
+            ps.setInt(1, dto.getEntidad().getIdAlumno().intValue());
+            ps.executeUpdate();
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conexion != null) {
+                conexion.close();
+            }
         }
     }
 
