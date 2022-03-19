@@ -4,6 +4,11 @@
  */
 package com.ipn.mx.controlador.carrera;
 
+import com.ipn.mx.modelo.dao.AlumnoDAO;
+import com.ipn.mx.modelo.dao.CarreraDAO;
+import com.ipn.mx.modelo.dto.AlumnoDTO;
+import com.ipn.mx.modelo.dto.CarreraDTO;
+import com.ipn.mx.utils.HTMLUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 
 /**
@@ -20,69 +26,41 @@ import java.io.PrintWriter;
 @WebServlet(name = "ActualizarCarreraServlet", value = "/ActualizarCarreraServlet")
 public class ActualizarCarreraServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ActualizarCarreraServlet</title>");            
-            out.println("</head>");
+
+            out.println(HTMLUtils.HTML_HEAD);
             out.println("<body>");
-            out.println("<h1>Servlet ActualizarCarreraServlet at " + request.getContextPath() + "</h1>");
+            out.println(HTMLUtils.HTML_NAV);
+            out.println("<div class='container'>");
+
+            CarreraDTO dto = new CarreraDTO();
+            dto.getEntidad().setNombreCarrera(request.getParameter("nombreCarrera"));
+            dto.getEntidad().setDescripcionCarrera(request.getParameter("descripcionCarrera"));
+            dto.getEntidad().setIdCarrera(Long.parseLong(request.getParameter("idCarrera")));
+
+            CarreraDAO dao = new CarreraDAO();
+
+            try {
+
+                dao.update(dto);
+
+                out.println("<div class='alert alert-primary' role='alert'>");
+                out.println("<h2> Carrrera actualizada satisfactoriamente </h2>");
+                out.println("</div>");
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                out.println("<div><h1>ERROR</h1></div>");
+            }
+
+            out.println("<a href='index.html' class='btn btn-primary'>Regresar</a>");
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
