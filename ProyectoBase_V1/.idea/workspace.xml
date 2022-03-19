@@ -10,39 +10,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/EliminarAlumnoServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/ListadoAlumnoServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/alumno/EliminarAlumnoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/alumno/ListadoAlumnoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/alumno/EliminarAlumnoServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/alumno/ListadoAlumnoServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/ActualizarAlumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/ActualizarAlumno.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/AgregarAlumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/AgregarAlumno.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/VerAlumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/VerAlumno.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/AgregarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/AgregarServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/ListadoServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/ListadoServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/VerCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/carrera/VerCarreraServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/Alumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/Alumno.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/AlumnoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/AlumnoDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/CarreraDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/dto/CarreraDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/entidades/Alumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/entidades/Alumno.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/entidades/Carrera.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/modelo/entidades/Carrera.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/utils/HTMLUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/utils/HTMLUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/alumno/nuevo.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/alumno/nuevo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/carrera/nuevo.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/carrera/nuevo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/ListadoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/ListadoServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/VerCarreraServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/carrera/VerCarreraServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/Alumno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/alumno/AgregarAlumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/alumno/AgregarAlumno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/Alumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/Alumno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/CarreraDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/modelo/dao/CarreraDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ipn/mx/utils/HTMLUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/utils/HTMLUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/alumno/nuevo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/alumno/nuevo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/carrera/nuevo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/carrera/nuevo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/ProyectoBase_V1-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/ActualizarCarreraServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/AgregarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/AgregarServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/EliminarCarreraServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/ListadoServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/ListadoServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/VerCarreraServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/carrera/VerCarreraServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/Alumno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/alumno/AgregarAlumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/alumno/AgregarAlumno.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/Alumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/Alumno.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dao/CarreraDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dto/AlumnoDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dto/CarreraDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/dto/CarreraDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/entidades/Alumno.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/entidades/Alumno.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/entidades/Carrera.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/modelo/entidades/Carrera.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/ipn/mx/utils/HTMLUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/utils/HTMLUtils.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,9 +105,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
@@ -114,8 +121,8 @@
       <recent name="controlador.alumno" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.58">
-    <configuration name="TomEE plus 9.0.0" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE 10.0.4" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+  <component name="RunManager" selected="TomEE Server.TomEE plus 9.0.0">
+    <configuration name="TomEE plus 9.0.0" type="TomeeConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="TomEE plus 9.0.0" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="ProyectoBase_V1:war exploded">
