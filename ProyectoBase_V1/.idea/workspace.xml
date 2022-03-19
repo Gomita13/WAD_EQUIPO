@@ -10,8 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61de68cd-5b44-4f92-b7ee-bc864a615602" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/EliminarAlumnoServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/WEB-INF/classes/com/ipn/mx/controlador/alumno/ListadoAlumnoServlet.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/alumno/EliminarAlumnoServlet.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/ipn/mx/controlador/alumno/ListadoAlumnoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/alumno/EliminarAlumnoServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/ipn/mx/controlador/alumno/ListadoAlumnoServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ProyectoBase_V1_war_exploded/META-INF/MANIFEST.MF" afterDir="false" />
