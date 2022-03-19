@@ -22,13 +22,16 @@ public class HTMLUtils {
             "<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n" +
             "<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">\n" +
             "<li class=\"nav-item\">\n" +
-            "<a class=\"nav-link active\" href=\"agregarCarrera.jsp\">Agregar</a>\n" +
+            "<a class=\"nav-link active\" href=\"./carrera/nuevo.html\">Agregar Carrera</a>\n" +
             "</li>\n" +
             "<li class=\"nav-item\">\n" +
-            "<a class=\"nav-link active\" href=\"carreras.jsp\">Listar Carreras</a>\n" +
+            "<a class=\"nav-link active\" href=\"ListadoServlet\">Listar Carreras</a>\n" +
             "</li>\n" +
             "<li class=\"nav-item\">\n" +
-            "<a class=\"nav-link active\" href=\"alumnos.jsp\">Listar Alumnos</a>\n" +
+            "<a class=\"nav-link active\" href=\"./alumno/nuevo.html\">Agregar Alumno</a>\n" +
+            "</li>\n" +
+            "<li class=\"nav-item\">\n" +
+            "<a class=\"nav-link active\" href=\"ListadoAlumnoServlet\">Listar Alumnos</a>\n" +
             "</li>\n" +
             "</ul>\n" +
             "</div>\n" +

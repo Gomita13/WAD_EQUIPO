@@ -47,7 +47,7 @@ public class AgregarAlumno extends HttpServlet {
             out.println("<div class='alert alert-primary' role='alert'>");
             out.println("<h2> Registro insertado satisfactoriamente </h2>");
             out.println("</div>");
-            out.println("<a href='index.html' class='btn btn-primary'></a>");
+            out.println("<a href='index.html' class='btn btn-primary'>Regresar a la página principal</a>");
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
