@@ -4,6 +4,12 @@
  */
 package com.ipn.mx.controlador.carrera;
 
+import com.ipn.mx.modelo.dao.AlumnoDAO;
+import com.ipn.mx.modelo.dao.CarreraDAO;
+import com.ipn.mx.modelo.dto.AlumnoDTO;
+import com.ipn.mx.modelo.dto.CarreraDTO;
+import com.ipn.mx.modelo.entidades.Carrera;
+import com.ipn.mx.utils.HTMLUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,78 +17,56 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 
-/**
- *
- * @author darkdestiny
- */
 @WebServlet(name = "VerCarreraServlet", value = "/VerCarreraServlet")
 public class VerCarreraServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet VerCarreraServlet</title>");            
-            out.println("</head>");
+
+            out.println(HTMLUtils.HTML_HEAD);
             out.println("<body>");
-            out.println("<h1>Servlet VerCarreraServlet at " + request.getContextPath() + "</h1>");
+            out.println(HTMLUtils.HTML_NAV);
+            out.println("<div class='container'>");
+
+            CarreraDTO dto = new CarreraDTO();
+            CarreraDAO dao = new CarreraDAO();
+
+            out.println("<h1>Datos de la carrera</h1>");
+
+            try {
+
+                dto.getEntidad().setIdCarrera(Long.parseLong(request.getParameter("id")));
+                CarreraDTO res = dao.read(dto);
+
+                out.println("<form action='ActualizarCarreraServlet' method='post'>");
+
+                out.println("<div class='mb-3'><label for='nombreCarrera' class='form-label'> Nombre Carrera</label>");
+                out.println("<input type='text' name='nombreCarrera' id='nombreCarrera' value='"+res.getEntidad().getNombreCarrera()+"' class='form-control' required maxlength='50'/></div>");
+
+                out.println("<div class='mb-3'><label for='descripcionCarrera' class='form-label'> Descripcion Carrera</label>");
+                out.println("<input type='text' name='descripcionCarrera' id='descripcionCarrera' value='"+res.getEntidad().getDescripcionCarrera()+"' class='form-control' required maxlength='50'/></div>");
+
+                out.println("<input type='hidden' name='idCarrera' id='idCarrera' value='"+res.getEntidad().getIdCarrera()+"' class='form-control' required maxlength='50'/></div>");
+
+                out.println("<input type='submit' name='cmdEnviar' value='Actualizar' class='btn btn-outline-primary'/>");
+                out.println("</form>");
+
+                out.println("<a href='index.html' class='btn btn-primary'>Cancelar</a>");
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                out.println("<div><h1>ERROR</h1></div>");
+            }
+
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
