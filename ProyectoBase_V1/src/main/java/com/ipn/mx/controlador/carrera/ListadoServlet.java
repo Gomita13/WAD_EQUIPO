@@ -6,6 +6,7 @@ package com.ipn.mx.controlador.carrera;
 
 import com.ipn.mx.modelo.dao.CarreraDAO;
 import com.ipn.mx.modelo.dto.CarreraDTO;
+import com.ipn.mx.utils.HTMLUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -32,15 +33,9 @@ public class ListadoServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ListadoServlet</title>");
-            out.println("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'>");
-            out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' ></script>");
-
-            out.println("</head>");
+            out.println(HTMLUtils.HTML_HEAD);
             out.println("<body>");
+            out.println(HTMLUtils.HTML_NAV);
             out.println("<div class='container'>");
             out.println("<table class='table table-striped'>");
             out.println("<tr>");
