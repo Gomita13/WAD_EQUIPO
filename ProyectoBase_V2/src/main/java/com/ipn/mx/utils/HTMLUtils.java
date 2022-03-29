@@ -15,7 +15,7 @@ public class HTMLUtils {
 
     public static String HTML_NAV = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n" +
             "<div class=\"container-fluid\">\n" +
-            "<a class=\"navbar-brand\" href=\"index.jsp\">Carrera Web</a>\n" +
+            "<a class=\"navbar-brand\" href=\"index.html\">Carrera Web</a>\n" +
             "<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n" +
             "<span class=\"navbar-toggler-icon\"></span>\n" +
             "</button>\n" +
@@ -25,7 +25,7 @@ public class HTMLUtils {
             "<a class=\"nav-link active\" href=\"./carrera/nuevo.html\">Agregar Carrera</a>\n" +
             "</li>\n" +
             "<li class=\"nav-item\">\n" +
-            "<a class=\"nav-link active\" href=\"ListadoServlet\">Listar Carreras</a>\n" +
+            "<a class=\"nav-link active\" href=\"CarreraServlet?accion=1\">Listar Carreras</a>\n" +
             "</li>\n" +
             "<li class=\"nav-item\">\n" +
             "<a class=\"nav-link active\" href=\"./alumno/nuevo.html\">Agregar Alumno</a>\n" +

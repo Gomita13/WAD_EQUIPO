@@ -4,9 +4,9 @@ import com.ipn.mx.modelo.dao.CarreraDAO;
 import com.ipn.mx.modelo.dto.CarreraDTO;
 import com.ipn.mx.utils.HTMLUtils;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -18,28 +18,40 @@ import java.util.logging.Logger;
 
 public class CarreraServlet extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
+        try(PrintWriter out = response.getWriter()){
+            int accion = Integer.parseInt(request.getParameter("accion"));
+            switch (accion){
+                case 1:
+                    listarCarreras(out);
+                    break;
+                case 2:
+                    mostrarCarrera(Integer.parseInt(request.getParameter("id")),out);
+                    break;
+                case 4:
+                    eliminarCarrera(Integer.parseInt(request.getParameter("id")),out);
+                    break;
+            }
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try(PrintWriter out = response.getWriter()){
             int accion = Integer.parseInt(request.getParameter("accion"));
             switch (accion){
                 case 0:
                     crearCarrera(request.getParameter("nombreCarrera"),request.getParameter("descripcionCarrera"),out);
                     break;
-                case 1:
-                    listarCarreras(out);
-                    break;
-                case 2:
-                    mostrarCarrera(Integer.parseInt(request.getParameter("idCarrera")),out);
-                    break;
                 case 3:
                     int id = Integer.parseInt(request.getParameter("idCarrera"));
                     String nombre = request.getParameter("nombreCarrera");
                     String descripcion = request.getParameter("descripcionCarrera");
                     actualizarCarrera(id,nombre,descripcion,out);
-                    break;
-                case 4:
-                    eliminarCarrera(Integer.parseInt(request.getParameter("idCarrera")),out);
                     break;
             }
         }
@@ -67,10 +79,19 @@ public class CarreraServlet extends HttpServlet {
             out.println("<h1>Ha ocurrido un error</h1>");
         }
 
+        out.println("<a href='index.html' class='btn btn-primary'>Regresar</a>");
+        out.println("</div>");
+        out.println("</body>");
+        out.println("</html>");
 
     }
 
     private void eliminarCarrera(int id, PrintWriter out){
+
+        out.println(HTMLUtils.HTML_HEAD);
+        out.println("<body>");
+        out.println(HTMLUtils.HTML_NAV);
+        out.println("<div class='container'>");
 
         CarreraDAO dao = new CarreraDAO();
         CarreraDTO dto = new CarreraDTO();
@@ -84,10 +105,11 @@ public class CarreraServlet extends HttpServlet {
             out.println("</div>");
 
         } catch (Exception ex) {
-            out.println("<h1>Error al eliminar la carrera</h1>");
+            out.println("<h1>Error al eliminar la carrera<br>Hay alumnos inscritos</h1>");
         }
 
         out.println("<a href='index.html' class='btn btn-primary'>Regresar</a>");
+        out.println("</div>");
         out.println("</body>");
         out.println("</html>");
     }
@@ -139,8 +161,9 @@ public class CarreraServlet extends HttpServlet {
             dto.getEntidad().setIdCarrera((long)id);
             CarreraDTO res = dao.read(dto);
 
-            out.println("<form action='ActualizarCarreraServlet' method='post'>");
-
+            out.println("<form action='CarreraServlet' method='post'>");
+            //Incluimos un input oculto con el valor de la accion, esto para evitar pasar los datos por el metodo get
+            out.println("<input type='hidden' name='accion' value='3'>");
             out.println("<div class='mb-3'><label for='nombreCarrera' class='form-label'> Nombre Carrera</label>");
             out.println("<input type='text' name='nombreCarrera' id='nombreCarrera' value='"+res.getEntidad().getNombreCarrera()+"' class='form-control' required maxlength='50'/></div>");
 
@@ -149,10 +172,12 @@ public class CarreraServlet extends HttpServlet {
 
             out.println("<input type='hidden' name='idCarrera' id='idCarrera' value='"+res.getEntidad().getIdCarrera()+"' class='form-control' required maxlength='50'/></div>");
 
+            out.println("<div class='text-center'>");
             out.println("<input type='submit' name='cmdEnviar' value='Actualizar' class='btn btn-outline-primary'/>");
-            out.println("</form>");
-
             out.println("<a href='index.html' class='btn btn-primary'>Cancelar</a>");
+            out.println("</div>");
+
+            out.println("</form>");
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -193,8 +218,8 @@ public class CarreraServlet extends HttpServlet {
                         +"</a></td>");
                 out.println("<td>"+ dto.getEntidad().getNombreCarrera()+"</td>");
                 out.println("<td>"+ dto.getEntidad().getDescripcionCarrera()+"</td>");
-                out.println("<td> <a href='EliminarCarreraServlet?id="+dto.getEntidad().getIdCarrera() +"' class='btn btn-outline-danger'>Eliminar</a></td>");
-                out.println("<td> <a href='VerCarreraServlet?id="+dto.getEntidad().getIdCarrera()+"' class='btn btn-outline-success'>Editar</a></td>");
+                out.println("<td> <a href='CarreraServlet?accion=4&id="+dto.getEntidad().getIdCarrera() +"' class='btn btn-outline-danger'>Eliminar</a></td>");
+                out.println("<td> <a href='CarreraServlet?accion=2&id="+dto.getEntidad().getIdCarrera()+"' class='btn btn-outline-success'>Editar</a></td>");
                 out.println("</tr>");
             }
 
