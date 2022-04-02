@@ -1,0 +1,14 @@
+nav {
+	background-color: black !important;
+	color: #c0f3f2 !important;
+}
+
+a{
+	color: #c0f3f2 !important;	
+}
+
+a:hover {
+	text-decoration: underline !important;
+	text-decoration-color: #b9bafa !important;
+	text-decoration-thickness:  5px !important;
+}
