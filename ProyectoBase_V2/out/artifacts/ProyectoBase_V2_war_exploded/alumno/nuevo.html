@@ -28,14 +28,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <a class="nav-link px-lg-3 py-3 py-lg-4" href="../carrera/nuevo.html">Carrera</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="../ListadoServlet">Lista de Carreras</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="../CarreraServlet?accion=1">Lista de Carreras</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="nuevo.html">Alumno</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="../alumno/nuevo.html">Alumno</a>
                         <!-- <a class="nav-link" href="./CarreraServlet">Carrera</a>-->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="../ListadoAlumnoServlet">Lista de Alumnos</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="../AlumnoServlet?accion=1">Lista de Alumnos</a>
                     </li>
                 </ul>
             </div>
@@ -48,7 +48,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </header>
     <main>
         <article>
-            <form method="post" action="../AgregarAlumno" name="frmDatos">
+            <form method="post" action="../AlumnoServlet" name="frmDatos">
+                <input type="hidden" name="accion" value="0">
                 <div class="mb-3">
                     <label for="nombreAlumno" class="form-label"> Nombre del alumno:</label>
                     <input type="text" name="nombreAlumno" id="nombreAlumno"

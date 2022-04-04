@@ -31,7 +31,7 @@ public class HTMLUtils {
             "<a class=\"nav-link active\" href=\"./alumno/nuevo.html\">Agregar Alumno</a>\n" +
             "</li>\n" +
             "<li class=\"nav-item\">\n" +
-            "<a class=\"nav-link active\" href=\"ListadoAlumnoServlet\">Listar Alumnos</a>\n" +
+            "<a class=\"nav-link active\" href=\"AlumnoServlet?accion=1\">Listar Alumnos</a>\n" +
             "</li>\n" +
             "</ul>\n" +
             "</div>\n" +
