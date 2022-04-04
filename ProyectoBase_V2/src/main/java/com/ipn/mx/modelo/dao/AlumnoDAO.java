@@ -89,7 +89,8 @@ public class AlumnoDAO {
             ps.setString(2, dto.getEntidad().getPaternoAlumno());
             ps.setString(3, dto.getEntidad().getMaternoAlumno());
             ps.setString(4, dto.getEntidad().getEmailAlumno());
-            ps.setInt(5, dto.getEntidad().getIdAlumno().intValue());
+            ps.setInt(5, dto.getEntidad().getIdCarrera());
+            ps.setInt(6, dto.getEntidad().getIdAlumno().intValue());
             ps.executeUpdate();
         } finally {
             if (ps != null) {

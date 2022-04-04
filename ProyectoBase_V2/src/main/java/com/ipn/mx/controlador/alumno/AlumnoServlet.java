@@ -146,6 +146,7 @@ public class AlumnoServlet extends HttpServlet {
 
         }catch(Exception e){
             out.println("<h1>Ha ocurrido un error</h1>");
+            out.println("<p>"+e+"</p>");
         }
 
         out.println("<a href='index.html' class='btn btn-primary'>Regresar</a>");
@@ -172,6 +173,7 @@ public class AlumnoServlet extends HttpServlet {
             String carrera=dao.selectCarrera(res.getEntidad().getIdCarrera());
 
             out.println("<form action='AlumnoServlet' method='post'>");
+            out.println("<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\n" + "rel=\"stylesheet\">\n");
 
             out.println("<input type='hidden' name='accion' value='3'>");
             out.println("<div class='mb-3'><label for='nombreAlumno' class='form-label'> Nombre alumno</label>");
@@ -214,6 +216,8 @@ public class AlumnoServlet extends HttpServlet {
         out.println("<body>");
         out.println(HTMLUtils.HTML_NAV);
         out.println("<div class='container'>");
+        out.println("<br>");
+        out.println("<h2 style='text-align: center;'>Alumnos inscritos</h2>\n");
         out.println("<table class='table table-striped'>");
         out.println("<tr>");
         out.println("<th>Clave Alumno</th>");
@@ -231,6 +235,8 @@ public class AlumnoServlet extends HttpServlet {
 
         try {
             List lista = dao.readAll();
+            out.println("<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\n" +
+                    "      rel=\"stylesheet\"");
             for (int i = 0; i < lista.size(); i++) {
                 dto = (AlumnoDTO) lista.get(i);
                 out.println("<tr>");
@@ -240,8 +246,8 @@ public class AlumnoServlet extends HttpServlet {
                 out.println("<td>"+ dto.getEntidad().getPaternoAlumno() + " " + dto.getEntidad().getMaternoAlumno() + " " + dto.getEntidad().getNombreAlumno() + "</td>");
                 out.println("<td>"+ dto.getEntidad().getEmailAlumno()+"</td>");
                 out.println("<td>"+ dto.getEntidad().getIdCarrera()+"</td>");
-                out.println("<td> <a href='AlumnoServlet?accion=6&idAlumno="+dto.getEntidad().getIdAlumno() +"' class='btn btn-outline-danger'>Eliminar</a></td>");
-                out.println("<td> <a href='AlumnoServlet?accion=5&idAlumno="+dto.getEntidad().getIdAlumno()+"' class='btn btn-outline-success'>Editar</a></td>"+dto.getEntidad().getIdCarrera()+"</a></td>");
+                out.println("<td> <a href='AlumnoServlet?accion=6&idAlumno="+dto.getEntidad().getIdAlumno() +"' class='btn btn-outline-danger'><span class='material-icons'> delete_outline </span></a></td>");
+                out.println("<td> <a href='AlumnoServlet?accion=5&idAlumno="+dto.getEntidad().getIdAlumno()+"' class='btn btn-outline-success'><span class='material-icons'> update </span></a></td>"+dto.getEntidad().getIdCarrera()+"</a></td>");
                 out.println("</tr>");
             }
         }catch (Exception ex) {

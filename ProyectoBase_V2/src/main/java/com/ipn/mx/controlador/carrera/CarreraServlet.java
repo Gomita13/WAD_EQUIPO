@@ -195,6 +195,8 @@ public class CarreraServlet extends HttpServlet {
         out.println("<body>");
         out.println(HTMLUtils.HTML_NAV);
         out.println("<div class='container'>");
+        out.println("<br>");
+        out.println("<h2 style='text-align: center;'>Carreras impartidas</h2>\n");
         out.println("<table class='table table-striped'>");
         out.println("<tr>");
         out.println("<th>Clave Carrera</th>");
@@ -210,16 +212,19 @@ public class CarreraServlet extends HttpServlet {
 
         try {
             List lista = dao.readAll();
+            out.println("<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\n" +
+                    "      rel=\"stylesheet\"");
             for (int i = 0; i < lista.size(); i++) {
                 dto = (CarreraDTO) lista.get(i);
+                out.println("<br>");
                 out.println("<tr>");
-                out.println("<td><a href='VerCarreraServlet' class='btn btn-outline-warning'>"
+                out.println("<td><a href='CarreraServlet?accion=2&id="+dto.getEntidad().getIdCarrera()+"' class='btn btn-outline-warning'>"
                         + dto.getEntidad().getIdCarrera()
                         +"</a></td>");
                 out.println("<td>"+ dto.getEntidad().getNombreCarrera()+"</td>");
                 out.println("<td>"+ dto.getEntidad().getDescripcionCarrera()+"</td>");
-                out.println("<td> <a href='CarreraServlet?accion=4&id="+dto.getEntidad().getIdCarrera() +"' class='btn btn-outline-danger'>Eliminar</a></td>");
-                out.println("<td> <a href='CarreraServlet?accion=2&id="+dto.getEntidad().getIdCarrera()+"' class='btn btn-outline-success'>Editar</a></td>");
+                out.println("<td> <a href='CarreraServlet?accion=4&id="+dto.getEntidad().getIdCarrera() +"' class='btn btn-outline-danger'><span class='material-icons'> delete_outline </span></a></td>");
+                out.println("<td> <a href='CarreraServlet?accion=2&id="+dto.getEntidad().getIdCarrera()+"' class='btn btn-outline-success'><span class='material-icons'> update </span></a></td>");
                 out.println("</tr>");
             }
 
