@@ -36,10 +36,10 @@
                         <a class="nav-link px-lg-3 py-3 py-lg-4" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="./carrera/nuevo.html">Carrera</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="../carrera/agregarCarrera.jsp">Carreras</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="ListadoServlet">Lista de Carreras</a>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href="../carrera/listaDeCarreras.jsp">Listar Carreras</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 py-3 py-lg-4" href="./alumno/nuevo.html">Alumno</a>
@@ -64,7 +64,7 @@
                 <div class="site-heading text-center">
                     <%
                         String usuario = session.getAttribute("nombre")+" "+session.getAttribute("paterno")+" "+session.getAttribute("materno");
-                        out.println("<h1>Te damos la bienvenida "+usuario+"</h1>");
+                        out.println("<h1>Te damos la grandísima bienvenida "+usuario+"</h1>");
                     %>
                 </div>
             </div>

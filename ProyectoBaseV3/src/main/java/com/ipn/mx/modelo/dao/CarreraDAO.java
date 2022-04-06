@@ -33,8 +33,8 @@ public class CarreraDAO {
 
     private void obtenerConexion() {
         //obtener conexion
-        String usuario = "ezja";
-        String clave = "ezja";
+        String usuario = "root";
+        String clave = "";
         String url = "jdbc:mysql://localhost:3306/EscuelaWeb?serverTimezone=America/Mexico_City&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&useSSL=false";
         //String url = "jdbc:mysql://localhost:3306/EscuelaWeb?
         //serverTimeZone=America/Mexico_City&allowPublicKeyRetrieval=true&

@@ -23,6 +23,7 @@
 <body>
 <div class="container">
   <div class="mb-3"></div>
+  <%-- INICIO DE LA NAV --%>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand text-primary" href="#">Escuela Web </a>
@@ -32,15 +33,29 @@
       <div class="collapse navbar-collapse text-primary" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active text-primary" aria-current="page" href="#">Home</a>
+            <a class="nav-link px-lg-3 py-3 py-lg-4" aria-current="page" href="../usuario/inicio.jsp">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="">Carrera</a>
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="agregarCarrera.jsp">Carreras</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="listaDeCarreras.jsp">Listar Carreras</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="./alumno/nuevo.html">Alumno</a>
+            <!-- <a class="nav-link" href="./CarreraServlet">Carrera</a>-->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="ListadoAlumnoServlet">Lista de Alumnos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="inicio.jsp?close=1">Cerrar sesión</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <%-- FIN DE LA NAV --%>
   <div class="mb-3"></div>
   <div class="card border-primary">
     <div class="card-header text-primary">
@@ -49,7 +64,6 @@
       </h1>
     </div>
     <div class="card-body text-primary">
-      <a href="nuevaCarrera.jsp" class="btn btn-outline-primary">Nuevo</a>
       <table class="table table-striped">
         <tr>
           <th>Clave de la Carrera</th>
@@ -95,8 +109,18 @@
           }
         %>
       </table>
+      <a href="agregarCarrera.jsp" class="btn btn-outline-primary align-items-center">Nueva carrera</a>
     </div>
   </div>
+  <%
+    if (request.getParameter("error") != null) {
+  %>
+  <div class="alert alert-danger">
+    <p>No se pudo procesar tu petición <%= request.getParameter("error") %></p>
+  </div>
+  <%
+  }
+  %>
 </div>
 </body>
 </html>

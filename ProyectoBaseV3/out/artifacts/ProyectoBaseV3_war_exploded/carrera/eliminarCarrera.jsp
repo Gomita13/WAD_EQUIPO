@@ -14,20 +14,20 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>JSP Page</title>
+    <title>Eliminar carrera</title>
 </head>
 <body>
-<h1>Hello World!</h1>
 <%
     CarreraDAO dao = new CarreraDAO();
     CarreraDTO dto = new CarreraDTO();
     dto.getEntidad().setIdCarrera(Long.parseLong(request.getParameter("id")));
+
     try {
-        dto = dao.read(dto);
-        out.println(dto);
-
-    } catch (SQLException ex) {
-
+        dao.delete(dto);
+        response.sendRedirect("listaDeCarreras.jsp");
+    } catch (Exception ex) {
+        System.out.println("ERROR (eliminarCarrera.jsp): ");
+        ex.printStackTrace();
     }
 %>
 </body>
