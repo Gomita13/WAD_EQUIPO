@@ -13,7 +13,7 @@
     <script type="text/javascript" src="./js/popper.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap/bootstrap.min.js"></script>
 </head>
-<body class="text-center">
+<body class="text-center" style="background-image: url('https://fondosmil.com/fondo/54336.png')">
     <div class="card w-25">
         <form class="form-signin" method="post" action="">
             <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión</h1>

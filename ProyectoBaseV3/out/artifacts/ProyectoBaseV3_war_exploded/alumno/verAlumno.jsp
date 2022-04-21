@@ -6,10 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.ipn.mx.modelo.dao.CarreraDAO" %>
+<%@ page import="com.ipn.mx.modelo.dao.AlumnoDAO" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.ipn.mx.modelo.dto.CarreraDTO" %>
+<%@ page import="com.ipn.mx.modelo.dto.AlumnoDTO" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-    <title>Actualizar carrera</title>
+    <title>Actualizar alumno</title>
 </head>
 <body>
 <%-- INICIO DE LA NAV --%>
@@ -43,11 +43,11 @@
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="../carrera/listaDeCarreras.jsp">Listar Carreras</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="./alumno/nuevo.html">Alumno</a>
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="../alumno/agregarAlumno.jsp">Alumno</a>
                     <!-- <a class="nav-link" href="./CarreraServlet">Carrera</a>-->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="ListadoAlumnoServlet">Lista de Alumnos</a>
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="../alumno/listaDeAlumnos.jsp">Lista de Alumnos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="inicio.jsp?close=1">Cerrar sesión</a>
@@ -63,12 +63,12 @@
         * Acá obtenemos el id que obtenemos gracias a que listaDeCarreras.jsp
         * nos pasa el id por la url en la etiqueta <a> que corresponde al vínculo para el jsp de verCarrera.jsp
         * */
-        int id = Integer.parseInt(request.getParameter("id"));
-        CarreraDAO dao = new CarreraDAO();
-        CarreraDTO dto = new CarreraDTO();
+        int idAlumno = Integer.parseInt(request.getParameter("idAlumno"));
+        AlumnoDTO dto = new AlumnoDTO();
+        AlumnoDAO dao = new AlumnoDAO();
         String errors = "";
     %>
-    <h1>Datos de la carrera</h1>
+    <h1>Datos del alumno</h1>
     <%
         /*
         * Todo esto es un copy-paste del servlet del proyecto 2 solo que en lugar de usar los out.println()
@@ -84,26 +84,39 @@
         * Los bloques < % % > normales son para cuando queramos escribir código java como tal.
         * */
         try{
-         dto.getEntidad().setIdCarrera((long)id);
-         CarreraDTO resultado = dao.read(dto);
+            dto.getEntidad().setIdAlumno((long) idAlumno);
+            AlumnoDTO res = dao.read(dto);
+            String carrera=dao.selectCarrera(res.getEntidad().getIdCarrera());
     %>
     <form action='' method='post'>
         <div class='mb-3'>
-            <label for='nombreCarrera' class='form-label'> Nombre Carrera</label>
-            <input type='text' name='nombreCarrera' id='nombreCarrera' value='<%=resultado.getEntidad().getNombreCarrera() %>' class='form-control form-control-plaintext' required maxlength='50' readonly/>
+            <label for='nombreAlumno' class='form-label'> Nombre alumno</label>
+            <input type='text' name='nombreAlumno' id='nombreAlumno' value='<%=res.getEntidad().getNombreAlumno()%>' class='form-control form-control' required maxlength='50'/>
         </div>
         <div class='mb-3'>
-            <label for='descripcionCarrera' class='form-label'> Descripcion Carrera</label>
-            <input type='text' name='descripcionCarrera' id='descripcionCarrera' value='<%=resultado.getEntidad().getDescripcionCarrera() %>' class='form-control form-control-plaintext' required maxlength='50' readonly/>
-            <input type='hidden' name='idCarrera' id='idCarrera' value='<%=resultado.getEntidad().getIdCarrera() %>' class='form-control' required maxlength='50'/>
+            <label for='paternoAlumno' class='form-label'> Apellido paterno:</label>
+            <input type='text' name='paternoAlumno' id='paternoAlumno' value='<%=res.getEntidad().getPaternoAlumno() %>' class='form-control form-control' required maxlength='50'/>
+        </div>
+        <div class="mb-3">
+            <label for='maternoAlumno' class='form-label'> Apellido materno:</label>
+            <input type='text' name='maternoAlumno' id='maternoAlumno' value="<%= res.getEntidad().getMaternoAlumno()%>" class='form-control' required maxlength='50'/>
+        </div>
+        <div class='mb-3'>
+            <label for='emailAlumno' class='form-label'> Correo de alumno:</label>
+            <input type='text' name='emailAlumno' id='emailAlumno' value='<%=res.getEntidad().getEmailAlumno() %>' class='form-control form-control' required maxlength='50'/>
+        </div>
+        <div class='mb-3'>
+            <label for='nombreCarrera' class='form-label'> Carrera en la que esta:</label>
+            <input type='text' name='nombreCarrera' id='nombreCarrera' value='<%= carrera %>' class='form-control form-control' required maxlength='50'/>
+            <input type='hidden' name='idAlumno' id='idAlumno' value='<%= res.getEntidad().getIdAlumno() %>' class='form-control form-control' required maxlength='50'/>
         </div>
         <div class='text-center'>
-            <a href='listaDeCarreras.jsp' class='btn btn-primary'>Cancelar</a>
+            <a href='listaDeAlumnos.jsp' class='btn btn-primary'>Cancelar</a>
         </div>
     </form>
     <%
         } catch (SQLException e) {
-            System.out.println("ERROR (verCarrera.jsp): ");
+            System.out.println("ERROR (verAlumno.jsp): ");
             e.printStackTrace();
         }
     %>

@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../js/popper.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="text-center" style="background-image: url('https://fondosmil.com/fondo/54336.png')">
 <div class="container h-100" id="container">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-12 col-xl-11">

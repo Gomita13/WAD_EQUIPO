@@ -1,5 +1,5 @@
-<%@ page import="com.ipn.mx.modelo.dto.CarreraDTO" %>
-<%@ page import="com.ipn.mx.modelo.dao.CarreraDAO" %><%--
+<%@ page import="com.ipn.mx.modelo.dto.AlumnoDTO" %>
+<%@ page import="com.ipn.mx.modelo.dao.AlumnoDAO" %><%--
   Created by IntelliJ IDEA.
   User: sadaga
   Date: 24/03/2022
@@ -40,11 +40,11 @@
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="../carrera/listaDeCarreras.jsp">Listar Carreras</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="./alumno/nuevo.html">Alumno</a>
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="../alumno/agregarAlumno.jsp">Alumno</a>
                     <!-- <a class="nav-link" href="./CarreraServlet">Carrera</a>-->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="ListadoAlumnoServlet">Lista de Alumnos</a>
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="../alumno/listaDeAlumnos.jsp">Lista de Alumnos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="inicio.jsp?close=1">Cerrar sesión</a>
@@ -57,7 +57,7 @@
     <div class="container">
         <header>
             <br><h2>
-            Datos de la Carrera
+            Datos del alumno
         </h2><br>
         </header>
         <main>
@@ -65,26 +65,50 @@
                 <form method="post" action="" name="frmDatos">
                     <input type="hidden" name="accion" value="0">
                     <div class="mb-3">
-                        <label for="txtNombreCarrera" class="form-label"> Nombre Carrera</label>
-                        <input type="text" name="nombreCarrera" id="txtNombreCarrera"
-                               placeholder="Nombre de la Carrera"
+                        <label for="nombreAlumno" class="form-label"> Nombre del alumno:</label>
+                        <input type="text" name="nombreAlumno" id="nombreAlumno"
+                               placeholder="Nombre del alumno"
                                class="form-control"
                                required
                                maxlength="50"/>
                     </div>
                     <div>
-                        <label for="txtDescripcion" class="form-label">Descripción</label>
-                        <input name="descripcionCarrera" id="txtDescripcion"
-                               placeholder="Descripción"
+                        <label for="paternoAlumno" class="form-label">Apellido paterno:</label>
+                        <input name="paternoAlumno" id="paternoAlumno"
+                               placeholder="Apellido paterno"
                                maxlength="100"
                                required
                                class="form-control"
                         />
                     </div>
-                    <div class="mb-3"></div>
-
-                    <input type="submit" name="cmdEnviar" value="Enviar" class="btn btn-outline-primary"/>
-
+                    <div class="mb-3">
+                        <label for="maternoAlumno" class="form-label">Apellido materno:</label>
+                        <input type="text" name="maternoAlumno" id="maternoAlumno"
+                               placeholder="Apellido materno"
+                               class="form-control"
+                               required
+                               maxlength="50"/>
+                    </div>
+                    <div>
+                        <label for="emailAlumno" class="form-label">Email del alumno:</label>
+                        <input name="emailAlumno" id="emailAlumno"
+                               placeholder="Email del alumno"
+                               maxlength="100"
+                               required
+                               class="form-control"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombreCarrera" class="form-label"> Nombre Carrera</label>
+                        <input type="text" name="nombreCarrera" id="nombreCarrera"
+                               placeholder="Nombre de la Carrera"
+                               class="form-control"
+                               required
+                               maxlength="50"/>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" name="cmdEnviar" value="Enviar" class="btn btn-outline-primary"/>
+                    </div>
                 </form>
             </article>
         </main>
@@ -98,19 +122,23 @@
             * la única diferencia es que aquí no están los out.println()
             * */
             if(request.getMethod().equalsIgnoreCase("Post")) {
-                CarreraDTO dto = new CarreraDTO();
-                dto.getEntidad().setNombreCarrera(request.getParameter("nombreCarrera"));
-                dto.getEntidad().setDescripcionCarrera(request.getParameter("descripcionCarrera"));
-                CarreraDAO dao = new CarreraDAO();
+                AlumnoDTO dto = new AlumnoDTO();
+                dto.getEntidad().setNombreAlumno(request.getParameter("nombreAlumno"));
+                dto.getEntidad().setPaternoAlumno(request.getParameter("paternoAlumno"));
+                dto.getEntidad().setMaternoAlumno(request.getParameter("maternoAlumno"));
+                dto.getEntidad().setEmailAlumno(request.getParameter("emailAlumno"));
+                AlumnoDAO dao = new AlumnoDAO();
                 try {
+                    int idCarrera = dao.selectCarrera(request.getParameter("nombreCarrera"));
+                    dto.getEntidad().setIdCarrera(idCarrera);
                     dao.create(dto);
                     // Esta línea lo que hace es redirigir a la página que se pone entre paréntesis una vez terminado el proceso
-                    response.sendRedirect("listaDeCarreras.jsp");
+                    response.sendRedirect("listaDeAlumnos.jsp");
                 } catch(Exception e) {
-                    System.out.println("ERROR (agregarCarrera.jsp): ");
+                    System.out.println("ERROR (agregarAlumno.jsp): ");
                     e.printStackTrace();
                     //Si hubiera algún error, redirigimos al usuario a la página que queramos y pasamos el parámetro error por la url
-                    response.sendRedirect("listaDeCarreras.jsp?error=" + e);
+                    response.sendRedirect("listaDeAlumnos.jsp?error=" + e);
                 }
             }
         %>
