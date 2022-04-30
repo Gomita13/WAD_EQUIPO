@@ -8,6 +8,6 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hola como estas</a>
+<a href="login_singup.jsp">Inicia sesión</a>
 </body>
 </html>
