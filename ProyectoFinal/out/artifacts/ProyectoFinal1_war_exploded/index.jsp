@@ -26,7 +26,7 @@
                                             <input type="password" id="txtPassword" class="form-control" />
                                         </div>
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <a href="dashboard.jsp"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 login" type="button">Log
+                                            <a href="dashboard.jsp"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
                                                 in</button></a>
                                             <a class="text-muted" href="#!">Forgot password?</a>
                                         </div>
