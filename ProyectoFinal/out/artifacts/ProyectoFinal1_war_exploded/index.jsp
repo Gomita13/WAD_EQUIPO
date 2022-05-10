@@ -14,25 +14,25 @@
                             <div class="col-lg-6">
                                 <div class="card-body p-md-5 mx-md-4">
                                     <h1>WebOS</h1>
-                                    <form>
+                                    <form action="persona-servlet" method="post">
                                         <p>Introduce tus datos</p>
+                                        <input type="hidden" name="accion" value="1">
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="txtEmail">Email:</label>
-                                            <input type="email" id="txtEmail" class="form-control"
+                                            <input name="email" type="email" id="txtEmail" class="form-control"
                                                    placeholder="Phone number or email address" />
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="txtPassword">Contraseña:</label>
-                                            <input type="password" id="txtPassword" class="form-control" />
+                                            <input name="password" type="password" id="txtPassword" class="form-control" />
                                         </div>
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <a href="dashboard.jsp"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
-                                                in</button></a>
-                                            <a class="text-muted" href="#!">Forgot password?</a>
+                                            <input type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 login" value="Ingresar">
+                                            <a class="text-muted" href="#!">¿Olvidaste tu contraseña?</a>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-center pb-4">
-                                            <p class="mb-0 me-2">Don't have an account?</p>
-                                            <a href="sign-up.jsp"><button type="button" class="btn btn-outline-danger">Create new</button></a>
+                                            <p class="mb-0 me-2">¿No tienes una cuenta?</p>
+                                            <a href="sign-up.jsp"><button type="button" class="btn btn-outline-danger">Crear cuenta</button></a>
                                         </div>
                                     </form>
                                 </div>

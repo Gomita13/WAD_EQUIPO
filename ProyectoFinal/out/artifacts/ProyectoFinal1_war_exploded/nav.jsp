@@ -23,11 +23,9 @@
                 <a class="nav-link" href="#">Mis tareas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Cuenta</a>
+                <a class="nav-link" href="account.jsp">Cuenta</a>
             </li>
         </ul>
-        <span class="navbar-text sign-out">
-            Cerrar sesión
-        </span>
+        <a href="persona-servlet?accion=0">Cerrar sesión</a>
     </div>
 </nav>

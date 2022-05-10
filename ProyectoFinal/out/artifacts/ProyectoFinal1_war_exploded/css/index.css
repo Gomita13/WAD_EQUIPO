@@ -40,7 +40,7 @@ label {
     margin-bottom: 0.3em;
 }
 
-button {
+.login {
     margin-right: 50px !important;
     width: 100px !important;
     border-color: transparent !important;
