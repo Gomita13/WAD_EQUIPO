@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.ipn.mx.modelo.entidades.AlumnoEntity">
+        <table name="alumno" schema="escuelaweb" catalog=""/>
+        <attributes>
+            <id name="idAlumno">
+                <column name="idAlumno" precision="11"/>
+            </id>
+            <basic name="nombreAlumno">
+                <column name="nombreAlumno" length="70"/>
+            </basic>
+            <basic name="paternoAlumno">
+                <column name="paternoAlumno" length="35"/>
+            </basic>
+            <basic name="maternoAlumno">
+                <column name="maternoAlumno" length="35"/>
+            </basic>
+            <basic name="emailAlumno">
+                <column name="emailAlumno"/>
+            </basic>
+            <basic name="idCarrera">
+                <column name="idCarrera" precision="11"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.ipn.mx.modelo.entidades.CarreraEntity">
+        <table name="carrera" schema="escuelaweb" catalog=""/>
+        <attributes>
+            <id name="idCarrera">
+                <column name="idCarrera" precision="11"/>
+            </id>
+            <basic name="nombreCarrera">
+                <column name="nombreCarrera" length="100"/>
+            </basic>
+            <basic name="descripcionCarrera">
+                <column name="descripcionCarrera"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.ipn.mx.modelo.entidades.UsuarioEntity">
+        <table name="usuario" schema="escuelaweb" catalog=""/>
+        <attributes>
+            <id name="idUsuario">
+                <column name="idUsuario" precision="11"/>
+            </id>
+            <basic name="nombre">
+                <column name="nombre" length="70"/>
+            </basic>
+            <basic name="paterno">
+                <column name="paterno" length="35"/>
+            </basic>
+            <basic name="materno">
+                <column name="materno" length="35"/>
+            </basic>
+            <basic name="email">
+                <column name="email"/>
+            </basic>
+            <basic name="nombreUsuario">
+                <column name="nombreUsuario" length="100"/>
+            </basic>
+            <basic name="claveUsuario">
+                <column name="claveUsuario"/>
+            </basic>
+            <basic name="fechaCreacion">
+                <column name="fechaCreacion" precision="-1"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>
