@@ -1,0 +1,26 @@
+h1{
+    font-family: 'Pacifico', cursive;
+    font-size: xx-large;
+    background: -webkit-linear-gradient(90deg, rgba(135,0,163,1) 15%, rgba(255,150,0,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-right: 1em;
+    margin-left: 10px;
+}
+
+li, span{
+    color: black !important;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bolder;
+}
+
+.nav-link {
+    color: black !important;
+}
+.sign-out {
+    float: right !important;
+}
+
+nav {
+    box-shadow: 0px 3px rgba(0,0,0,0.1) !important;
+}

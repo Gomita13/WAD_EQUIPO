@@ -1,16 +1,13 @@
 package com.ipn.mx.modelo.dto;
 
 import com.ipn.mx.modelo.entidades.Alumno;
+import com.ipn.mx.modelo.entidades.Carrera;
 import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 /**
  *
  * @author darkdestiny
  */
-@Data
-@AllArgsConstructor
 public class AlumnoDTO implements Serializable {
 
     private Alumno entidad;
@@ -19,6 +16,13 @@ public class AlumnoDTO implements Serializable {
         entidad = new Alumno();
     }
 
+    public Alumno getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(Alumno entidad) {
+        this.entidad = entidad;
+    }
 
     @Override
     public String toString(){
@@ -29,7 +33,6 @@ public class AlumnoDTO implements Serializable {
         sb.append("Materno : ").append(getEntidad().getMaternoAlumno()).append("\n");
         sb.append("Email : ").append(getEntidad().getEmailAlumno()).append("\n");
         sb.append("Clave Carrera  : ").append(getEntidad().getIdCarrera()).append("\n");
-        //sb.append("Clave Carrera  : ").append(getEntidad().getIdCarrera().getIdCarrera).append("\n");
 
         return sb.toString();
     }

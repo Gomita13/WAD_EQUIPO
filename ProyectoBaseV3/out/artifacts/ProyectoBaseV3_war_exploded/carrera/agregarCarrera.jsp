@@ -24,14 +24,14 @@
 <%-- INICIO DE LA NAV --%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#">Proyecto Base </a>
+        <a class="navbar-brand" href="../usuario/inicio.jsp">Proyecto Base </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto py-4 py-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" aria-current="page" href="#">Home</a>
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" aria-current="page" href="../usuario/inicio.jsp">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="../carrera/agregarCarrera.jsp">Carreras</a>
@@ -89,6 +89,14 @@
             </article>
         </main>
         <%
+            /*
+            * Aquí hacemos un if que checa si se hace una petición de tipo POST a este jsp.
+            * Esta página se manda peticiones a sí misma porque en el action del form que está
+            * arriba no hay nada, así es como se mandan las peticiones a una misma página. Entonces
+            * checa si el método fue post y si fue así hace la inserción de la carrera en la BD con el DAO.
+            * El código que está en este bloque es exactamente un copy-paste del servlet del proyecto 2
+            * la única diferencia es que aquí no están los out.println()
+            * */
             if(request.getMethod().equalsIgnoreCase("Post")) {
                 CarreraDTO dto = new CarreraDTO();
                 dto.getEntidad().setNombreCarrera(request.getParameter("nombreCarrera"));
@@ -96,10 +104,12 @@
                 CarreraDAO dao = new CarreraDAO();
                 try {
                     dao.create(dto);
+                    // Esta línea lo que hace es redirigir a la página que se pone entre paréntesis una vez terminado el proceso
                     response.sendRedirect("listaDeCarreras.jsp");
                 } catch(Exception e) {
                     System.out.println("ERROR (agregarCarrera.jsp): ");
                     e.printStackTrace();
+                    //Si hubiera algún error, redirigimos al usuario a la página que queramos y pasamos el parámetro error por la url
                     response.sendRedirect("listaDeCarreras.jsp?error=" + e);
                 }
             }

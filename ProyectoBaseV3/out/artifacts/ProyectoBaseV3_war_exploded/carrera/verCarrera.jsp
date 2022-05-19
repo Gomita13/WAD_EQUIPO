@@ -27,14 +27,14 @@
 <%-- INICIO DE LA NAV --%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#">Proyecto Base </a>
+        <a class="navbar-brand" href="../usuario/inicio.jsp">Proyecto Base </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto py-4 py-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" aria-current="page" href="#">Home</a>
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" aria-current="page" href="../usuario/inicio.jsp">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4" href="../carrera/agregarCarrera.jsp">Carreras</a>
@@ -59,6 +59,10 @@
 <%-- FIN DE LA NAV --%>
 <div class="container">
     <%
+        /*
+        * Acá obtenemos el id que obtenemos gracias a que listaDeCarreras.jsp
+        * nos pasa el id por la url en la etiqueta <a> que corresponde al vínculo para el jsp de verCarrera.jsp
+        * */
         int id = Integer.parseInt(request.getParameter("id"));
         CarreraDAO dao = new CarreraDAO();
         CarreraDTO dto = new CarreraDTO();
@@ -66,6 +70,19 @@
     %>
     <h1>Datos de la carrera</h1>
     <%
+        /*
+        * Todo esto es un copy-paste del servlet del proyecto 2 solo que en lugar de usar los out.println()
+        * ya podemos usar HTML normalito siempre y cuando no estén dentro de los bloques jsp < % % >
+        * recordemos que dentro de estos bloques solo se puede escribir código java, lo que esté fuera es código HTML
+        * MUCHO OJO: Cuando queramos poner un valor que esté guardado en una variable de java dentro de los bloques jsp,
+        * por ejemplo, dentro de un atributo value de las etiquetas o dentro de las mismas etiquetas. Ej:
+        * Tenemos una variable String nombre = "mi nombre" y eso lo queremos meter en el value de un input o en una
+        * etiqueta <p> debemos hacerlo de la siguiente manera:
+        * <input type='text' value='< % = nombre % >'> (Véase el código html de abajo)
+        * Démonos cuenta que no es como un bloque jsp normal el cual es < % % > (Es sin espacios pero si le quito
+        * los espacios deja de ponerlo como comentario xD) sino que es < % = variable % > CON EL SIGNO =
+        * Los bloques < % % > normales son para cuando queramos escribir código java como tal.
+        * */
         try{
          dto.getEntidad().setIdCarrera((long)id);
          CarreraDTO resultado = dao.read(dto);
@@ -86,6 +103,7 @@
     </form>
     <%
         } catch (SQLException e) {
+            System.out.println("ERROR (verCarrera.jsp): ");
             e.printStackTrace();
         }
     %>

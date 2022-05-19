@@ -18,6 +18,9 @@
 </head>
 <body>
 <%
+    /*
+    * Esto es un copy-paste del servlet del proyecto 2 solo que sin los out.println()
+    * */
     CarreraDAO dao = new CarreraDAO();
     CarreraDTO dto = new CarreraDTO();
     dto.getEntidad().setIdCarrera(Long.parseLong(request.getParameter("id")));
@@ -28,6 +31,7 @@
     } catch (Exception ex) {
         System.out.println("ERROR (eliminarCarrera.jsp): ");
         ex.printStackTrace();
+        response.sendRedirect("listaDeCarreras.jsp?error=" + ex);
     }
 %>
 </body>

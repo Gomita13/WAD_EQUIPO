@@ -1,0 +1,36 @@
+.page-title {
+    font-family: 'Pacifico', cursive;
+    font-size: xx-large;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.status-bar {
+    width: 200px !important;
+    border-radius: 2em;
+    height: 20px !important;
+    background: -webkit-linear-gradient(90deg, rgba(0,163,24,1) 15%, rgba(0,255,77,1) 100%);
+}
+
+.card-header{
+    font-family: 'Ruluko', sans-serif;
+    font-size: x-large !important;
+    font-weight: bold !important;
+}
+
+.card-body {
+    display: inline-block !important;
+}
+
+.percent {
+    margin-top: -2px !important;
+    margin-bottom: 6px !important;
+    font-family: 'Ruluko', sans-serif;
+    font-size: large !important;
+    font-weight: bolder !important;
+}
+
+.date{
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-bottom: 6px !important;
+}
