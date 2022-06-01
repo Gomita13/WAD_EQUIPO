@@ -1,4 +1,4 @@
-package com.ipn.mx.datos;
+package com.ipn.mx.modelo;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 

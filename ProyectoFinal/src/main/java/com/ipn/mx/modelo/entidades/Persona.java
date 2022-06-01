@@ -1,4 +1,4 @@
-package com.ipn.mx.dominio;
+package com.ipn.mx.modelo.entidades;
 
 public class Persona {
     private String email;
