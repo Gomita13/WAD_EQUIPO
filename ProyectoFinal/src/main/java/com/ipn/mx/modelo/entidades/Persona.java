@@ -20,6 +20,12 @@ public class Persona {
         this.password = password;
     }
 
+    public Persona(String email, String nombre, String apellidos) {
+        this.email = email;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
+
     public String getEmail() {
         return email;
     }

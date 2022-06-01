@@ -7,14 +7,16 @@ public class Proyecto {
     private String nombreProyecto;
     private Date inicio;
     private Date fin;
+    private String administrador;
 
     public Proyecto() {
     }
 
-    public Proyecto(String nombreProyecto, Date inicio, Date fin) {
+    public Proyecto(String nombreProyecto, Date inicio, Date fin, String administrador) {
         this.nombreProyecto = nombreProyecto;
         this.inicio = inicio;
         this.fin = fin;
+        this.administrador = administrador;
     }
 
     public String getNombreProyecto() {
@@ -39,5 +41,13 @@ public class Proyecto {
 
     public void setFin(Date fin) {
         this.fin = fin;
+    }
+
+    public String getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(String administrador) {
+        this.administrador = administrador;
     }
 }
