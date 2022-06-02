@@ -14,9 +14,9 @@
                             <div class="col-lg-6">
                                 <div class="card-body p-md-5 mx-md-4">
                                     <h1>WebOS</h1>
-                                    <form action="persona-servlet" method="post">
+                                    <form action="ServletPersona?accion=login" method="post">
                                         <p>Introduce tus datos</p>
-                                        <input type="hidden" name="accion" value="1">
+<%--                                        <input type="hidden" name="accion" value="1">--%>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="txtEmail">Email:</label>
                                             <input name="email" type="email" id="txtEmail" class="form-control"

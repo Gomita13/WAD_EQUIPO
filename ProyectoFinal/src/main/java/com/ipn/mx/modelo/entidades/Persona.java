@@ -9,6 +9,11 @@ public class Persona {
     public Persona() {
     }
 
+    public Persona(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public Persona(String email) {
         this.email = email;
     }

@@ -9,6 +9,8 @@ import java.util.*;
 public class PersonaDAO {
     private static final String SQL_SELECT = "SELECT email, nombre, apellidos, password FROM persona";
     private static final String SELECT_BY_ID = "SELECT email, nombre, apellidos, password FROM persona WHERE email=?";
+    private static final String SELECT_LOGIN = "SELECT email, nombre, apellidos, password FROM persona WHERE email=?" +
+            " AND password = ?";
     private static final String SQL_INSERT = "INSERT INTO persona (email, nombre, apellidos, password) "
             + " VALUES(?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE persona SET nombre=?, apellidos=?, password=?" +
@@ -43,24 +45,50 @@ public class PersonaDAO {
         return personas;
     }
 
+    public boolean login(Persona persona) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean status = false;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(SELECT_LOGIN);
+            ps.setString(1, persona.getEmail());
+            ps.setString(2, persona.getPassword());
+            rs = ps.executeQuery();
+            status = rs.next();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return status;
+    }
+
     public Persona selectOne(Persona persona) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        Persona personaRes = new Persona();
         try {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SELECT_BY_ID);
             ps.setString(1, persona.getEmail());
             rs = ps.executeQuery();
-            rs.absolute(1); // Nos posicionamos en el primer registro que devuelve
-            String email = rs.getString("email");
-            String nombre = rs.getString("nombre");
-            String apellidos = rs.getString("apellidos");
-            String password = rs.getString("password");
-            persona.setEmail(email);
-            persona.setNombre(nombre);
-            persona.setApellidos(apellidos);
-            persona.setPassword(password);
+            if(rs.next()) {
+                String email = rs.getString("email");
+                String nombre = rs.getString("nombre");
+                String apellidos = rs.getString("apellidos");
+                String password = rs.getString("password");
+                personaRes.setEmail(email);
+                personaRes.setNombre(nombre);
+                personaRes.setApellidos(apellidos);
+                personaRes.setPassword(password);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -68,7 +96,7 @@ public class PersonaDAO {
             Conexion.close(ps);
             Conexion.close(conn);
         }
-        return persona;
+        return personaRes;
     }
 
     public int insert(Persona persona) {
