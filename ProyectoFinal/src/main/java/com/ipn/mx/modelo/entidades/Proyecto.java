@@ -12,6 +12,10 @@ public class Proyecto {
     public Proyecto() {
     }
 
+    public Proyecto(String nombreProyecto) {
+        this.nombreProyecto = nombreProyecto;
+    }
+
     public Proyecto(String nombreProyecto, Date inicio, Date fin, String administrador) {
         this.nombreProyecto = nombreProyecto;
         this.inicio = inicio;

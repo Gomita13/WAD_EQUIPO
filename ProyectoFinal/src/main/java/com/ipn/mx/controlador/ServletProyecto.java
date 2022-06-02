@@ -1,13 +1,18 @@
 package com.ipn.mx.controlador;
 
 import com.ipn.mx.modelo.dao.ProyectoDAO;
+import com.ipn.mx.modelo.dao.TareaDAO;
 import com.ipn.mx.modelo.entidades.Persona;
 import com.ipn.mx.modelo.entidades.Proyecto;
+import com.ipn.mx.modelo.entidades.Tarea;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ServletProyecto", value = "/ServletProyecto")
@@ -21,7 +26,7 @@ public class ServletProyecto extends HttpServlet {
                     this.mostrarMisProyectos(request, response);
                     break;
                 case "detalles":
-                    System.out.println("Muestra los detalles del proyecto");
+                    this.detallesProyecto(request, response);
                     break;
                 default:
                     System.out.println("Aqui algo valió madre");
@@ -58,6 +63,35 @@ public class ServletProyecto extends HttpServlet {
     }
 
     private void detallesProyecto (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String emailEncargado = (String) session.getAttribute("email");
+        Persona encargado = new Persona(emailEncargado);
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        Proyecto proyecto = new Proyecto(nombreProyecto);
+        Proyecto proyectoRes = new ProyectoDAO().selectOne(proyecto);
+        long diasRestantes = this.calcularDiasRestantes(proyectoRes);
+        List<Tarea> tareas = new TareaDAO().selectTareas(proyectoRes);
+        List<Tarea> tareasCompletadas = new ArrayList<>();
+        List<Tarea> tareasNoCompletadas = new ArrayList<>();
+        for(Tarea tarea: tareas) {
+            if(tarea.isCompletada()) {
+                tareasCompletadas.add(tarea);
+            } else {
+                tareasNoCompletadas.add(tarea);
+            }
+        }
+        List<Tarea> misTareas = new TareaDAO().selectTareasEncargadoProyecto(encargado, proyectoRes);
+        request.setAttribute("proyectoRes", proyectoRes);
+        request.setAttribute("diasRestantes", diasRestantes);
+        request.setAttribute("tareasCompletadas", tareasCompletadas);
+        request.setAttribute("tareasNoCompletadas", tareasNoCompletadas);
+        request.setAttribute("misTareas", misTareas);
+        request.getRequestDispatcher("project_details.jsp").forward(request, response);
+    }
 
+    private long calcularDiasRestantes(Proyecto proyecto) {
+        LocalDate fechaHoy = LocalDate.now();
+        LocalDate fechaProyecto = proyecto.getFin().toLocalDate();
+        return ChronoUnit.DAYS.between(fechaHoy, fechaProyecto);
     }
 }

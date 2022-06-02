@@ -63,18 +63,20 @@ public class ProyectoDAO {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        Proyecto proyectoRes = new Proyecto();
         try {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SELECT_BY_NOMBRE);
             ps.setString(1, proyecto.getNombreProyecto());
             rs = ps.executeQuery();
-            rs.absolute(1); // Nos posicionamos en el primer registro que devuelve
-            String nombreProyecto = rs.getString("nombreProyecto");
-            Date inicio = rs.getDate("inicio");
-            Date fin = rs.getDate("fin");
-            proyecto.setNombreProyecto(nombreProyecto);
-            proyecto.setInicio(inicio);
-            proyecto.setFin(fin);
+            if(rs.next()) {
+                String nombreProyecto = rs.getString("nombreProyecto");
+                Date inicio = rs.getDate("inicio");
+                Date fin = rs.getDate("fin");
+                proyectoRes.setNombreProyecto(nombreProyecto);
+                proyectoRes.setInicio(inicio);
+                proyectoRes.setFin(fin);
+            }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -82,7 +84,7 @@ public class ProyectoDAO {
             Conexion.close(ps);
             Conexion.close(conn);
         }
-        return proyecto;
+        return proyectoRes;
     }
 
     public List<Persona> selectColaboradores(Proyecto proyecto) {

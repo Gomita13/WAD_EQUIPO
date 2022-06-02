@@ -18,7 +18,7 @@
         <c:forEach var="proyecto" items="${misProyectos}">
             <div class="card">
                 <div class="card-header">
-                    <a href="ServletProyecto?accion?nuevo&nombreProyecto=${proyecto.getNombreProyecto()}">
+                    <a href="ServletProyecto?accion=detalles&nombreProyecto=${proyecto.getNombreProyecto()}">
                             ${proyecto.getNombreProyecto()}
                     </a>
                 </div>
@@ -31,16 +31,6 @@
                 </div>
             </div>
         </c:forEach>
-<%--        <div class="card">--%>
-<%--            <div class="card-header">Prototipo de Bellas Artes</div>--%>
-<%--            <div class="card-body">--%>
-<%--                <div class="row">--%>
-<%--                    <div class="col"><p class="date">Mayo 1, 2022 - Mayo 29, 2022</p></div>--%>
-<%--                    <div class="col col-lg-2 status-bar"> </div>--%>
-<%--                    <div class="col-md-auto"><span class="percent">100%</span></div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
     </div>
 </body>
 </html>
