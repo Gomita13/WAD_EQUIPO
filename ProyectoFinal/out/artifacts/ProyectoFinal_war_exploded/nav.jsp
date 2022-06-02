@@ -17,7 +17,7 @@
                 <a class="nav-link" href="#">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="projects.jsp">Mis proyectos</a>
+                <a class="nav-link" href="ServletProyecto?accion=proyectos">Mis proyectos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Mis tareas</a>

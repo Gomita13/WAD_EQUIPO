@@ -35,6 +35,8 @@ public class ServletPersona extends HttpServlet {
                     this.login(request, response);
                     break;
             }
+        } else {
+            response.sendRedirect("error.jsp");
         }
     }
 
@@ -80,11 +82,6 @@ public class ServletPersona extends HttpServlet {
         List<Proyecto> proximosProyectos = this.calcularProyectos(proyectos);
         request.setAttribute("tareas", tareas);
         request.setAttribute("proximosProyectos", proximosProyectos);
-        System.out.println("Estos son tus proximos proyectos");
-        for(Proyecto proyectoProx: proximosProyectos) {
-            System.out.println(proyectoProx.getNombreProyecto());
-            System.out.println(proyectoProx.getFin());
-        }
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
 
