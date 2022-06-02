@@ -1,14 +1,19 @@
 package com.ipn.mx.controlador;
 
 import com.ipn.mx.modelo.dao.PersonaDAO;
+import com.ipn.mx.modelo.dao.ProyectoDAO;
 import com.ipn.mx.modelo.dao.TareaDAO;
 import com.ipn.mx.modelo.entidades.Persona;
+import com.ipn.mx.modelo.entidades.Proyecto;
 import com.ipn.mx.modelo.entidades.Tarea;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ServletPersona", value = "/ServletPersona")
@@ -71,15 +76,29 @@ public class ServletPersona extends HttpServlet {
         String apellidos = (String) session.getAttribute("apellidos");
         Persona persona = new Persona(email, nombre, apellidos);
         List<Tarea> tareas = new TareaDAO().selectTareasEncargado(persona);
+        List<Proyecto> proyectos = new ProyectoDAO().selectAll(persona);
+        List<Proyecto> proximosProyectos = this.calcularProyectos(proyectos);
         request.setAttribute("tareas", tareas);
-        for (Tarea tarea :
-                tareas) {
-            System.out.println("Estas son tus tareas");
-            System.out.println(tarea.getNombreTarea());
-            System.out.println(tarea.getDescripcion());
-            System.out.println(tarea.getNombreProyecto());
-            System.out.println(tarea.isCompletada());
+        request.setAttribute("proximosProyectos", proximosProyectos);
+        System.out.println("Estos son tus proximos proyectos");
+        for(Proyecto proyectoProx: proximosProyectos) {
+            System.out.println(proyectoProx.getNombreProyecto());
+            System.out.println(proyectoProx.getFin());
         }
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+    }
+
+    private List<Proyecto> calcularProyectos(List<Proyecto> proyectos) {
+        List<Proyecto> proximosProyectos = new ArrayList<>();
+        LocalDate fechaHoy = LocalDate.now();
+        LocalDate fechaProyecto;
+        for (Proyecto proyecto: proyectos) {
+            fechaProyecto = proyecto.getFin().toLocalDate();
+            long diasRestantes = ChronoUnit.DAYS.between(fechaHoy, fechaProyecto);
+            if(diasRestantes > 0 && diasRestantes < 14) {
+                proximosProyectos.add(proyecto);
+            }
+        }
+        return proximosProyectos;
     }
 }

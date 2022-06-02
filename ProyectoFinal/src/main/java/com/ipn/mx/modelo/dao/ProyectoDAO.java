@@ -42,7 +42,7 @@ public class ProyectoDAO {
             ps.setString(1, persona.getEmail());
             rs = ps.executeQuery();
             while (rs.next()) {
-                String nombreProyecto = rs.getString("email");
+                String nombreProyecto = rs.getString("nombreproyecto");
                 Date inicio = rs.getDate("inicio");
                 Date fin = rs.getDate("fin");
                 String administrador = rs.getString("administrador");
