@@ -20,7 +20,7 @@ import java.util.List;
 public class ServletPersona extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.mostrarDashboard(request, response);
     }
 
     @Override
