@@ -20,8 +20,8 @@ public class TareaDAO {
             "AND nombreproyecto = ? ORDER BY completada ASC";
     private static final String INSERT = "INSERT INTO tarea (nombretarea, nombreproyecto, encargado, descripcion, " +
             "completada) VALUES (?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tarea SET nombretarea = ?, nombreproyectp = ?, encargado = ?, " +
-            "descripcion = ? WHERE nombretarea = ?";
+    private static final String SQL_UPDATE = "UPDATE tarea SET nombretarea = ?, encargado = ?, " +
+            "descripcion = ? WHERE nombretarea = ? AND nombreproyecto = ?";
     private static final String COMPLETAR_TAREA = "UPDATE tarea SET completada = ?";
     private static final String SQL_DELETE = "DELETE FROM tarea WHERE nombretarea = ? AND nombreproyecto = ?";
 
@@ -42,7 +42,7 @@ public class TareaDAO {
                 String encargado = rs.getString("encargado");
                 String descripcion = rs.getString("descripcion");
                 boolean completada = rs.getBoolean("completada");
-                tareaRes.setNombreTarea(nombreProyecto);
+                tareaRes.setNombreTarea(nombreTarea);
                 tareaRes.setNombreProyecto(nombreProyecto);
                 tareaRes.setEncargado(encargado);
                 tareaRes.setDescripcion(descripcion);
@@ -157,10 +157,10 @@ public class TareaDAO {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQL_UPDATE);
             ps.setString(1, tarea.getNombreTarea());
-            ps.setString(2, tarea.getNombreProyecto());
-            ps.setString(3, tarea.getEncargado());
-            ps.setString(4, tarea.getDescripcion());
-            ps.setString(5, tarea.getNombreTarea());
+            ps.setString(2, tarea.getEncargado());
+            ps.setString(3, tarea.getDescripcion());
+            ps.setString(4, tarea.getNombreTarea());
+            ps.setString(5, tarea.getNombreProyecto());
             rows = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();

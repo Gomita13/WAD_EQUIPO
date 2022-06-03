@@ -24,7 +24,7 @@ public class ServletTarea extends HttpServlet {
                     this.formAgregarTarea(request, response);
                     break;
                 case "editar":
-                    this.editarTarea(request, response);
+                    this.formEditarTarea(request, response);
                     break;
                 case "eliminar":
                     this.eliminarTarea(request, response);
@@ -42,6 +42,9 @@ public class ServletTarea extends HttpServlet {
             switch (accion) {
                 case "nuevaTarea":
                     this.nuevaTarea(request, response);
+                    break;
+                case "editar":
+                    this.editarTarea(request, response);
                     break;
                 default:
                     System.out.println("Hola");
@@ -69,6 +72,17 @@ public class ServletTarea extends HttpServlet {
         }
     }
 
+    private void formEditarTarea (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombreTarea = request.getParameter("nombre");
+        String nombreProyecto = request.getParameter("proyecto");
+        Tarea tarea = new Tarea(nombreTarea, nombreProyecto);
+        Tarea tareaRes = new TareaDAO().selectOne(tarea);
+        List<Persona> personas = new PersonaDAO().selectAll();
+        request.setAttribute("tareaRes", tareaRes);
+        request.setAttribute("personas", personas);
+        request.getRequestDispatcher("editarTarea.jsp").forward(request, response);
+    }
+
     private void nuevaTarea(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombreTarea = request.getParameter("nombreTarea");
         String nombreProyecto = request.getParameter("nombreProyecto");
@@ -82,11 +96,15 @@ public class ServletTarea extends HttpServlet {
     }
 
     private void editarTarea (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nombreTarea = request.getParameter("nombre");
-        String nombreProyecto = request.getParameter("proyecto");
-        Tarea tarea = new Tarea(nombreTarea, nombreProyecto);
+        String nombreTarea = request.getParameter("nombreTarea");
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        String encargado = request.getParameter("encargado");
+        String descripcion = request.getParameter("descripcion");
+        boolean completada = false;
+        Tarea tarea = new Tarea(nombreTarea, nombreProyecto, encargado, descripcion, completada);
         Tarea tareaRes = new TareaDAO().selectOne(tarea);
-        int registrosModificados = new TareaDAO().update(tareaRes);
+        int registrosModificados = new TareaDAO().update(tarea);
+        System.out.println("Registros actualizados " + registrosModificados);
         ServletProyecto.detallesProyecto(request, response);
     }
 
