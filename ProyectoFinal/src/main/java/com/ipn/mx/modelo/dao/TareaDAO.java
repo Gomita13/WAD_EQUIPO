@@ -5,15 +5,12 @@ import com.ipn.mx.modelo.entidades.Persona;
 import com.ipn.mx.modelo.entidades.Proyecto;
 import com.ipn.mx.modelo.entidades.Tarea;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TareaDAO {
-    private static final String SQL_SELECT = "SELECT * FROM tarea";
+    private static final String SELECT_ONE = "SELECT * FROM tarea WHERE nombretarea = ? AND nombreproyecto = ?";
     // Estas son las tareas pendientes o completadas de un proyecto (sin importar el encargado)
     private static final String SELECT_BY_PROYECTO = "SELECT * FROM tarea WHERE nombreproyecto = ?";
     // Esta es la que se muestra en el dashboard
@@ -21,9 +18,45 @@ public class TareaDAO {
     // Esta es la que se muestra en Proyecto con sus tareas en la parte de "mis tareas"
     private static final String SELECT_BY_ENCARGADO_PROYECTO = "SELECT * FROM tarea WHERE encargado = ? " +
             "AND nombreproyecto = ? ORDER BY completada ASC";
+    private static final String INSERT = "INSERT INTO tarea (nombretarea, nombreproyecto, encargado, descripcion, " +
+            "completada) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE tarea SET nombretarea = ?, nombreproyectp = ?, encargado = ?, " +
             "descripcion = ? WHERE nombretarea = ?";
-    private static final String SQL_DELETE = "DELETE FROM tarea WHERE nombretarea = ?";
+    private static final String COMPLETAR_TAREA = "UPDATE tarea SET completada = ?";
+    private static final String SQL_DELETE = "DELETE FROM tarea WHERE nombretarea = ? AND nombreproyecto = ?";
+
+    public Tarea selectOne(Tarea tarea) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Tarea tareaRes = new Tarea();
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(SELECT_ONE);
+            ps.setString(1, tarea.getNombreTarea());
+            ps.setString(2, tarea.getNombreProyecto());
+            rs = ps.executeQuery();
+            if(rs.next()) {
+                String nombreTarea = rs.getString("nombretarea");
+                String nombreProyecto = rs.getString("nombreproyecto");
+                String encargado = rs.getString("encargado");
+                String descripcion = rs.getString("descripcion");
+                boolean completada = rs.getBoolean("completada");
+                tareaRes.setNombreTarea(nombreProyecto);
+                tareaRes.setNombreProyecto(nombreProyecto);
+                tareaRes.setEncargado(encargado);
+                tareaRes.setDescripcion(descripcion);
+                tareaRes.setCompletada(completada);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return tareaRes;
+    }
 
     public List<Tarea> selectTareas(Proyecto proyecto) {
         Connection conn = null;
@@ -92,6 +125,30 @@ public class TareaDAO {
         return tareas;
     }
 
+    public int insert(Tarea tarea) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        int rows = 0;
+        try{
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(INSERT);
+            ps.setString(1, tarea.getNombreTarea());
+            ps.setString(2, tarea.getNombreProyecto());
+            ps.setString(3, tarea.getEncargado());
+            ps.setString(4, tarea.getDescripcion());
+            ps.setBoolean(5, tarea.isCompletada());
+            rows = ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+        finally {
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return  rows;
+    }
+
     public int update(Tarea tarea) {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -123,6 +180,7 @@ public class TareaDAO {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQL_DELETE);
             ps.setString(1, tarea.getNombreTarea());
+            ps.setString(2, tarea.getNombreProyecto());
             rows = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();

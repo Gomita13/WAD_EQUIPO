@@ -20,7 +20,7 @@ import java.util.List;
 public class ServletPersona extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.mostrarDashboard(request, response);
+        mostrarDashboard(request, response);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class ServletPersona extends HttpServlet {
         }
     }
 
-    private void mostrarDashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void mostrarDashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
         String nombre = (String) session.getAttribute("nombre");
@@ -79,13 +79,13 @@ public class ServletPersona extends HttpServlet {
         Persona persona = new Persona(email, nombre, apellidos);
         List<Tarea> tareas = new TareaDAO().selectTareasEncargado(persona);
         List<Proyecto> proyectos = new ProyectoDAO().selectAll(persona);
-        List<Proyecto> proximosProyectos = this.calcularProyectos(proyectos);
+        List<Proyecto> proximosProyectos = calcularProyectos(proyectos);
         request.setAttribute("tareas", tareas);
         request.setAttribute("proximosProyectos", proximosProyectos);
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
 
-    private List<Proyecto> calcularProyectos(List<Proyecto> proyectos) {
+    private static List<Proyecto> calcularProyectos(List<Proyecto> proyectos) {
         List<Proyecto> proximosProyectos = new ArrayList<>();
         LocalDate fechaHoy = LocalDate.now();
         LocalDate fechaProyecto;

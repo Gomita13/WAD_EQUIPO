@@ -2,8 +2,10 @@ package com.ipn.mx.controlador;
 
 import com.ipn.mx.modelo.dao.PersonaDAO;
 import com.ipn.mx.modelo.dao.ProyectoDAO;
+import com.ipn.mx.modelo.dao.TareaDAO;
 import com.ipn.mx.modelo.entidades.Persona;
 import com.ipn.mx.modelo.entidades.Proyecto;
+import com.ipn.mx.modelo.entidades.Tarea;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -21,6 +23,12 @@ public class ServletTarea extends HttpServlet {
                 case "agregarTarea":
                     this.formAgregarTarea(request, response);
                     break;
+                case "editar":
+                    this.editarTarea(request, response);
+                    break;
+                case "eliminar":
+                    this.eliminarTarea(request, response);
+                    break;
                 default:
                     System.out.println("Hola");
             }
@@ -33,7 +41,7 @@ public class ServletTarea extends HttpServlet {
         if (accion != null) {
             switch (accion) {
                 case "nuevaTarea":
-                    System.out.println("Agregar tarea");
+                    this.nuevaTarea(request, response);
                     break;
                 default:
                     System.out.println("Hola");
@@ -59,5 +67,35 @@ public class ServletTarea extends HttpServlet {
             request.setAttribute("personas", personas);
             request.getRequestDispatcher("agregar_tarea_vacia.jsp").forward(request, response);
         }
+    }
+
+    private void nuevaTarea(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombreTarea = request.getParameter("nombreTarea");
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        String encargado = request.getParameter("encargado");
+        String descripcion = request.getParameter("descripcion");
+        boolean completada = false;
+        Tarea tarea = new Tarea(nombreTarea, nombreProyecto, encargado, descripcion, completada);
+        int registrosModificados = new TareaDAO().insert(tarea);
+        System.out.println("Registros modificados " + registrosModificados);
+        ServletProyecto.detallesProyecto(request, response);
+    }
+
+    private void editarTarea (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombreTarea = request.getParameter("nombre");
+        String nombreProyecto = request.getParameter("proyecto");
+        Tarea tarea = new Tarea(nombreTarea, nombreProyecto);
+        Tarea tareaRes = new TareaDAO().selectOne(tarea);
+        int registrosModificados = new TareaDAO().update(tareaRes);
+        ServletProyecto.detallesProyecto(request, response);
+    }
+
+    private void eliminarTarea (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombreTarea = request.getParameter("nombre");
+        String nombreProyecto = request.getParameter("proyecto");
+        Tarea tarea = new Tarea(nombreTarea, nombreProyecto);
+        int registrosModificados = new TareaDAO().delete(tarea);
+        System.out.println("Registros modificados " + registrosModificados);
+        ServletProyecto.mostrarMisProyectos(request, response);
     }
 }

@@ -10,6 +10,11 @@ public class Tarea {
     public Tarea() {
     }
 
+    public Tarea(String nombreTarea, String nombreProyecto) {
+        this.nombreTarea = nombreTarea;
+        this.nombreProyecto = nombreProyecto;
+    }
+
     public Tarea(String nombreTarea, String nombreProyecto, String encargado, String descripcion, boolean completada) {
         this.nombreTarea = nombreTarea;
         this.nombreProyecto = nombreProyecto;

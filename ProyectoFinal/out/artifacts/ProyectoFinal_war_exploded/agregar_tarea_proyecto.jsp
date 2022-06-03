@@ -16,11 +16,11 @@
 <header>
     <h2>Agregar tarea</h2>
 </header>
-<form action="" method="post">
+<form action="ServletTarea?accion=nuevaTarea" method="post">
     <label for="nombreTarea">Nombre de la tarea</label>
     <input type="text" name="nombreTarea" id="nombreTarea">
     <label for="nombreProyecto">Nombre del proyecto</label>
-    <input type="text" name="nombreProyecto" id="nombreProyecto" value="${nombreProyecto}">
+    <input type="text" name="nombreProyecto" id="nombreProyecto" value="${nombreProyecto}" readonly>
     <label for="encargado">Encargado</label>
     <select name="encargado" id="encargado">
         <c:forEach var="encargado" items="${personas}">

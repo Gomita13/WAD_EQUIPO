@@ -24,6 +24,12 @@
         <p>${tarea.getNombreTarea()}</p>
         <p>${tarea.getDescripcion()}</p>
         <p>Asignada a: ${tarea.getEncargado()}</p>
+        <a href="ServletTarea?accion=editar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+            Editar tarea
+        </a>
+        <a href="ServletTarea?accion=eliminar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+            Eliminar tarea
+        </a>
     </c:forEach>
     <a href="ServletTarea?accion=agregarTarea&nombreProyecto=${proyectoRes.getNombreProyecto()}">Agregar tarea</a>
 </section>

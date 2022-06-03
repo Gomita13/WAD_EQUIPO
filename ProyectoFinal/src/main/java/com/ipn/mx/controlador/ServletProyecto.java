@@ -23,14 +23,14 @@ public class ServletProyecto extends HttpServlet {
         if (accion != null) {
             switch (accion) {
                 case "proyectos":
-                    this.mostrarMisProyectos(request, response);
+                    mostrarMisProyectos(request, response);
                     break;
                 case "detalles":
-                    this.detallesProyecto(request, response);
+                    detallesProyecto(request, response);
                     break;
                 default:
                     System.out.println("Aqui algo valió madre");
-                    this.mostrarMisProyectos(request, response);
+                    mostrarMisProyectos(request, response);
             }
         } else {
             response.sendRedirect("error.jsp");
@@ -47,29 +47,23 @@ public class ServletProyecto extends HttpServlet {
         }
     }
 
-    private void mostrarMisProyectos (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void mostrarMisProyectos (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
         Persona persona = new Persona(email);
         List<Proyecto> misProyectos = new ProyectoDAO().selectAll(persona);
         request.setAttribute("misProyectos", misProyectos);
-        System.out.println("Estos son tus proyectos we");
-        for(Proyecto proyecto: misProyectos) {
-            System.out.println(proyecto.getNombreProyecto());
-            System.out.println(proyecto.getInicio());
-            System.out.println(proyecto.getFin());
-        }
         request.getRequestDispatcher("projects.jsp").forward(request, response);
     }
 
-    private void detallesProyecto (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void detallesProyecto (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String emailEncargado = (String) session.getAttribute("email");
         Persona encargado = new Persona(emailEncargado);
         String nombreProyecto = request.getParameter("nombreProyecto");
         Proyecto proyecto = new Proyecto(nombreProyecto);
         Proyecto proyectoRes = new ProyectoDAO().selectOne(proyecto);
-        long diasRestantes = this.calcularDiasRestantes(proyectoRes);
+        long diasRestantes = calcularDiasRestantes(proyectoRes);
         List<Tarea> tareas = new TareaDAO().selectTareas(proyectoRes);
         List<Persona> colaboradores = new ProyectoDAO().selectColaboradores(proyectoRes);
         List<Tarea> tareasCompletadas = new ArrayList<>();
@@ -91,7 +85,7 @@ public class ServletProyecto extends HttpServlet {
         request.getRequestDispatcher("project_details.jsp").forward(request, response);
     }
 
-    private long calcularDiasRestantes(Proyecto proyecto) {
+    private static long calcularDiasRestantes(Proyecto proyecto) {
         LocalDate fechaHoy = LocalDate.now();
         LocalDate fechaProyecto = proyecto.getFin().toLocalDate();
         return ChronoUnit.DAYS.between(fechaHoy, fechaProyecto);
