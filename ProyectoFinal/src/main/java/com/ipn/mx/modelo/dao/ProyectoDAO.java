@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.util.List;
 
 public class ProyectoDAO {
+    private static final String SELECT_ALL_PROJECTS = "SELECT * FROM proyecto";
     //Obtiene los proyectos en los que es colaborador cierta persona
     private static final String SQL_SELECT = "SELECT proyecto.nombreproyecto, proyecto.inicio, proyecto.fin," +
             " proyecto.administrador FROM proyecto INNER JOIN colaborador ON " +
@@ -29,6 +30,34 @@ public class ProyectoDAO {
     private static final String SQL_UPDATE = "UPDATE proyecto SET nombreproyecto = ?, inicio = ?, fin = ? " +
             "WHERE nombreproyecto = ?";
     private static final String SQL_DELETE = "DELETE FROM proyecto WHERE nombreproyecto = ?";
+
+    public List<Proyecto> selectAllProjects() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Proyecto proyecto;
+        List<Proyecto> proyectos = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(SQL_SELECT);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String nombreProyecto = rs.getString("nombreproyecto");
+                Date inicio = rs.getDate("inicio");
+                Date fin = rs.getDate("fin");
+                String administrador = rs.getString("administrador");
+                proyecto = new Proyecto(nombreProyecto, inicio, fin, administrador);
+                proyectos.add(proyecto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return proyectos;
+    }
 
     public List<Proyecto> selectAll(Persona persona) {
         Connection conn = null;
@@ -73,9 +102,11 @@ public class ProyectoDAO {
                 String nombreProyecto = rs.getString("nombreProyecto");
                 Date inicio = rs.getDate("inicio");
                 Date fin = rs.getDate("fin");
+                String administrador = rs.getString("administrador");
                 proyectoRes.setNombreProyecto(nombreProyecto);
                 proyectoRes.setInicio(inicio);
                 proyectoRes.setFin(fin);
+                proyectoRes.setAdministrador(administrador);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -125,6 +156,7 @@ public class ProyectoDAO {
             ps.setString(1, proyecto.getNombreProyecto());
             ps.setDate(2, proyecto.getInicio());
             ps.setDate(3, proyecto.getInicio());
+            ps.setString(4, proyecto.getAdministrador());
             rows = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

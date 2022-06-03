@@ -71,6 +71,7 @@ public class ServletProyecto extends HttpServlet {
         Proyecto proyectoRes = new ProyectoDAO().selectOne(proyecto);
         long diasRestantes = this.calcularDiasRestantes(proyectoRes);
         List<Tarea> tareas = new TareaDAO().selectTareas(proyectoRes);
+        List<Persona> colaboradores = new ProyectoDAO().selectColaboradores(proyectoRes);
         List<Tarea> tareasCompletadas = new ArrayList<>();
         List<Tarea> tareasNoCompletadas = new ArrayList<>();
         for(Tarea tarea: tareas) {
@@ -86,6 +87,7 @@ public class ServletProyecto extends HttpServlet {
         request.setAttribute("tareasCompletadas", tareasCompletadas);
         request.setAttribute("tareasNoCompletadas", tareasNoCompletadas);
         request.setAttribute("misTareas", misTareas);
+        request.setAttribute("colaboradores", colaboradores);
         request.getRequestDispatcher("project_details.jsp").forward(request, response);
     }
 
