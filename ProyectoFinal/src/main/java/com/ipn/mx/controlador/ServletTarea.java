@@ -102,7 +102,6 @@ public class ServletTarea extends HttpServlet {
         String descripcion = request.getParameter("descripcion");
         boolean completada = false;
         Tarea tarea = new Tarea(nombreTarea, nombreProyecto, encargado, descripcion, completada);
-        Tarea tareaRes = new TareaDAO().selectOne(tarea);
         int registrosModificados = new TareaDAO().update(tarea);
         System.out.println("Registros actualizados " + registrosModificados);
         ServletProyecto.detallesProyecto(request, response);

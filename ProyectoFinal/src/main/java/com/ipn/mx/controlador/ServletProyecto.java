@@ -31,7 +31,7 @@ public class ServletProyecto extends HttpServlet {
                     detallesProyecto(request, response);
                     break;
                 case "editar":
-                    System.out.println("Editar proyecto");
+                    formEditarProyecto(request, response);
                     break;
                 default:
                     System.out.println("Aqui algo valió madre");
@@ -53,6 +53,9 @@ public class ServletProyecto extends HttpServlet {
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }
+                    break;
+                case "editarP":
+                    editarProyecto(request, response);
                     break;
                 default:
                     System.out.println("Algo valió madre");
@@ -117,7 +120,29 @@ public class ServletProyecto extends HttpServlet {
         mostrarMisProyectos(request, response);
     }
 
+    private void formEditarProyecto (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        Proyecto proyecto = new Proyecto(nombreProyecto);
+        Proyecto proyectoRes = new ProyectoDAO().selectOne(proyecto);
+        request.setAttribute("proyectoRes", proyectoRes);
+        request.getRequestDispatcher("editar_proyecto.jsp").forward(request, response);
+    }
 
+    private void editarProyecto (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String proyectoOld = request.getParameter("proyecto");
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        String inicioStr = request.getParameter("inicio");
+        String finStr = request.getParameter("fin");
+        Date inicio = parseDate(inicioStr);
+        Date fin = parseDate(finStr);
+        Proyecto proyecto = new Proyecto(nombreProyecto, inicio, fin);
+        int registros = new ProyectoDAO().update(proyecto, proyectoOld);
+        System.out.println(proyecto.getNombreProyecto());
+        System.out.println(proyecto.getInicio());
+        System.out.println(proyecto.getFin());
+        System.out.println("Se modificó " + registros + " proyecto");
+        mostrarMisProyectos(request, response);
+    }
 
     private static long calcularDiasRestantes(Proyecto proyecto) {
         LocalDate fechaHoy = LocalDate.now();

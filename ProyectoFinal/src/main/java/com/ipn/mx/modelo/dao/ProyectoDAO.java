@@ -186,7 +186,7 @@ public class ProyectoDAO {
         return rows;
     }
 
-    public int update(Proyecto proyecto) {
+    public int update(Proyecto proyecto, String proyectoOld) {
         Connection conn = null;
         PreparedStatement ps = null;
         int rows = 0;
@@ -196,8 +196,12 @@ public class ProyectoDAO {
             ps.setString(1, proyecto.getNombreProyecto());
             ps.setDate(2, proyecto.getInicio());
             ps.setDate(3, proyecto.getFin());
-            ps.setString(4, proyecto.getNombreProyecto());
+            ps.setString(4, proyectoOld);
             rows = ps.executeUpdate();
+            System.out.println("UPDATE proyecto SET nombreproyecto = " + proyecto.getNombreProyecto() + ", " +
+                    "inicio = " + proyecto.getInicio() + ", " +
+                    "fin = " + proyecto.getFin() + " " +
+                    "WHERE nombreproyecto = " + proyectoOld + "");
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
