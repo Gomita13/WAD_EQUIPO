@@ -12,26 +12,31 @@
     <jsp:param name="optionalStyle" value="css/proyectos.css"/>
 </jsp:include>
 <body>
-    <jsp:include page="nav.jsp"/>
-    <div class="container">
-        <h2 class="page-title">Mis proyectos</h2>
-        <c:forEach var="proyecto" items="${misProyectos}">
-            <div class="card">
-                <div class="card-header">
-                    <a href="ServletProyecto?accion=detalles&nombreProyecto=${proyecto.getNombreProyecto()}">
-                            ${proyecto.getNombreProyecto()}
-                    </a>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col"><p class="date">Desde ${proyecto.getInicio()} hasta ${proyecto.getFin()}</p></div>
-                        <div class="col col-lg-2 status-bar"> </div>
-                        <div class="col-md-auto"><span class="percent">12%</span></div>
+<jsp:include page="nav.jsp"/>
+<div class="container">
+    <h2 class="page-title">Mis proyectos</h2>
+    <c:forEach var="proyecto" items="${misProyectos}">
+        <div class="card">
+            <div class="card-header">
+                <a href="ServletProyecto?accion=detalles&nombreProyecto=${proyecto.getNombreProyecto()}">
+                        ${proyecto.getNombreProyecto()}
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col"><p class="date">Desde ${proyecto.getInicio()} hasta ${proyecto.getFin()}</p></div>
+                    <div class="col col-lg-2 status-bar"></div>
+                    <div class="col-md-auto"><span class="percent">12%</span></div>
+                    <div class="col">
+                        <a href="ServletProyecto?accion=editar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                            Editar proyecto
+                        </a>
                     </div>
                 </div>
             </div>
-        </c:forEach>
-    </div>
+        </div>
+    </c:forEach>
+    <a href="nuevo_proyecto.jsp"> Nuevo proyecto </a>
+</div>
 </body>
 </html>
-

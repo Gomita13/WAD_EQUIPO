@@ -11,6 +11,9 @@ public class PersonaDAO {
     private static final String SELECT_BY_ID = "SELECT email, nombre, apellidos, password FROM persona WHERE email=?";
     private static final String SELECT_LOGIN = "SELECT email, nombre, apellidos, password FROM persona WHERE email=?" +
             " AND password = ?";
+    private static final String SELECT_BY_PROJECT = "SELECT p.email, p.nombre, p.apellidos from persona p INNER JOIN" +
+            " colaborador c on p.email = c.emailpersona INNER JOIN proyecto p2 on p2.nombreproyecto = c.nombreproyecto" +
+            " WHERE p2.nombreproyecto = 'Web'";
     private static final String SQL_INSERT = "INSERT INTO persona (email, nombre, apellidos, password) "
             + " VALUES(?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE persona SET nombre=?, apellidos=?, password=?" +

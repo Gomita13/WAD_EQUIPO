@@ -2,6 +2,8 @@ package com.ipn.mx.modelo.entidades;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class Proyecto {
     private String nombreProyecto;

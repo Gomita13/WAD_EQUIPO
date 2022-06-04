@@ -3,12 +3,10 @@ package com.ipn.mx.modelo.dao;
 import com.ipn.mx.modelo.Conexion;
 import com.ipn.mx.modelo.entidades.Persona;
 import com.ipn.mx.modelo.entidades.Proyecto;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 
 public class ProyectoDAO {
@@ -27,6 +25,8 @@ public class ProyectoDAO {
             "ORDER BY persona.apellidos ASC";
     private static final String SQL_INSERT = "INSERT INTO proyecto (nombreproyecto, inicio, fin, administrador) " +
             "VALUES (?, ?, ?, ?)";
+    private static final String INSERT_COLABORADOR = "INSERT INTO colaborador (nombreproyecto, emailpersona) VALUES " +
+            "(?, ?)";
     private static final String SQL_UPDATE = "UPDATE proyecto SET nombreproyecto = ?, inicio = ?, fin = ? " +
             "WHERE nombreproyecto = ?";
     private static final String SQL_DELETE = "DELETE FROM proyecto WHERE nombreproyecto = ?";
@@ -155,8 +155,27 @@ public class ProyectoDAO {
             ps = conn.prepareStatement(SQL_INSERT);
             ps.setString(1, proyecto.getNombreProyecto());
             ps.setDate(2, proyecto.getInicio());
-            ps.setDate(3, proyecto.getInicio());
+            ps.setDate(3, proyecto.getFin());
             ps.setString(4, proyecto.getAdministrador());
+            rows = ps.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return rows;
+    }
+
+    public int insertColaborador(Proyecto proyecto, Persona persona) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        int rows = 0;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(INSERT_COLABORADOR);
+            ps.setString(1, proyecto.getNombreProyecto());
+            ps.setString(2, persona.getEmail());
             rows = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

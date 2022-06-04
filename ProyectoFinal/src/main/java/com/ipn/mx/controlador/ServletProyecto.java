@@ -10,6 +10,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -28,6 +30,9 @@ public class ServletProyecto extends HttpServlet {
                 case "detalles":
                     detallesProyecto(request, response);
                     break;
+                case "editar":
+                    System.out.println("Editar proyecto");
+                    break;
                 default:
                     System.out.println("Aqui algo valió madre");
                     mostrarMisProyectos(request, response);
@@ -41,13 +46,24 @@ public class ServletProyecto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String accion = request.getParameter("accion");
         if (accion != null) {
-
-        } else  {
+            switch (accion) {
+                case "nuevo":
+                    try {
+                        nuevoProyecto(request, response);
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                default:
+                    System.out.println("Algo valió madre");
+                    mostrarMisProyectos(request, response);
+            }
+        } else {
             response.sendRedirect("error.jsp");
         }
     }
 
-    public static void mostrarMisProyectos (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void mostrarMisProyectos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
         Persona persona = new Persona(email);
@@ -56,7 +72,7 @@ public class ServletProyecto extends HttpServlet {
         request.getRequestDispatcher("projects.jsp").forward(request, response);
     }
 
-    public static void detallesProyecto (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void detallesProyecto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String emailEncargado = (String) session.getAttribute("email");
         Persona encargado = new Persona(emailEncargado);
@@ -68,8 +84,8 @@ public class ServletProyecto extends HttpServlet {
         List<Persona> colaboradores = new ProyectoDAO().selectColaboradores(proyectoRes);
         List<Tarea> tareasCompletadas = new ArrayList<>();
         List<Tarea> tareasNoCompletadas = new ArrayList<>();
-        for(Tarea tarea: tareas) {
-            if(tarea.isCompletada()) {
+        for (Tarea tarea : tareas) {
+            if (tarea.isCompletada()) {
                 tareasCompletadas.add(tarea);
             } else {
                 tareasNoCompletadas.add(tarea);
@@ -85,9 +101,32 @@ public class ServletProyecto extends HttpServlet {
         request.getRequestDispatcher("project_details.jsp").forward(request, response);
     }
 
+    private void nuevoProyecto (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
+        HttpSession session = request.getSession();
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        String inicioStr = request.getParameter("inicio");
+        String finStr = request.getParameter("fin");
+        String administrador = (String) session.getAttribute("email");
+        Date inicio = parseDate(inicioStr);
+        Date fin = parseDate(finStr);
+        Proyecto proyecto = new Proyecto(nombreProyecto, inicio, fin, administrador);
+        Persona persona = new Persona(administrador);
+        int registrosModificados = new ProyectoDAO().insert(proyecto);
+        int registros = new ProyectoDAO().insertColaborador(proyecto, persona);
+        System.out.println("Resgistros modificados " + registrosModificados + " colaborador registrado " + registros);
+        mostrarMisProyectos(request, response);
+    }
+
+
+
     private static long calcularDiasRestantes(Proyecto proyecto) {
         LocalDate fechaHoy = LocalDate.now();
         LocalDate fechaProyecto = proyecto.getFin().toLocalDate();
         return ChronoUnit.DAYS.between(fechaHoy, fechaProyecto);
+    }
+
+    private Date parseDate (String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        return Date.valueOf(localDate);
     }
 }
