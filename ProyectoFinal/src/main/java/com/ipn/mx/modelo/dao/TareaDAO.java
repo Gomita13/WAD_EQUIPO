@@ -149,7 +149,7 @@ public class TareaDAO {
         return  rows;
     }
 
-    public int update(Tarea tarea) {
+    public int update(Tarea tarea, String tareaOld) {
         Connection conn = null;
         PreparedStatement ps = null;
         int rows = 0;
@@ -159,7 +159,7 @@ public class TareaDAO {
             ps.setString(1, tarea.getNombreTarea());
             ps.setString(2, tarea.getEncargado());
             ps.setString(3, tarea.getDescripcion());
-            ps.setString(4, tarea.getNombreTarea());
+            ps.setString(4, tareaOld);
             ps.setString(5, tarea.getNombreProyecto());
             rows = ps.executeUpdate();
         } catch (SQLException ex) {

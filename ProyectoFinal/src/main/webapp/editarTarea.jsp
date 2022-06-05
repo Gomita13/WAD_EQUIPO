@@ -16,7 +16,7 @@
 <header>
     <h2>Editar tarea</h2>
 </header>
-<form action="ServletTarea?accion=editar" method="post">
+<form action="ServletTarea?accion=editar&tarea=${tareaRes.getNombreTarea()}" method="post">
     <label for="nombreTarea">Nombre de la tarea</label>
     <input type="text" name="nombreTarea" id="nombreTarea" value="${tareaRes.getNombreTarea()}">
     <label for="nombreProyecto">Nombre del proyecto</label>

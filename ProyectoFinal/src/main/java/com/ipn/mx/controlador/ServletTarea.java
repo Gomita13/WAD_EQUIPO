@@ -96,13 +96,14 @@ public class ServletTarea extends HttpServlet {
     }
 
     private void editarTarea (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String tareaOld = request.getParameter("tarea");
         String nombreTarea = request.getParameter("nombreTarea");
         String nombreProyecto = request.getParameter("nombreProyecto");
         String encargado = request.getParameter("encargado");
         String descripcion = request.getParameter("descripcion");
         boolean completada = false;
         Tarea tarea = new Tarea(nombreTarea, nombreProyecto, encargado, descripcion, completada);
-        int registrosModificados = new TareaDAO().update(tarea);
+        int registrosModificados = new TareaDAO().update(tarea, tareaOld);
         System.out.println("Registros actualizados " + registrosModificados);
         ServletProyecto.detallesProyecto(request, response);
     }
