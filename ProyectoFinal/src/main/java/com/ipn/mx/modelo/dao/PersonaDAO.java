@@ -16,7 +16,7 @@ public class PersonaDAO {
             " WHERE p2.nombreproyecto = 'Web'";
     private static final String SQL_INSERT = "INSERT INTO persona (email, nombre, apellidos, password) "
             + " VALUES(?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE persona SET nombre=?, apellidos=?, password=?" +
+    private static final String SQL_UPDATE = "UPDATE persona SET email=?, nombre=?, apellidos=?, password=?" +
             " WHERE email=?";
     private static final String SQL_DELETE = "DELETE FROM persona WHERE email=?";
 
@@ -123,17 +123,18 @@ public class PersonaDAO {
         return rows;
     }
 
-    public int update(Persona persona) {
+    public int update(Persona persona, String emailOld) {
         Connection conn = null;
         PreparedStatement ps = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             ps = conn.prepareStatement(SQL_UPDATE);
-            ps.setString(1, persona.getNombre());
-            ps.setString(2, persona.getApellidos());
-            ps.setString(3, persona.getPassword());
-            ps.setString(4, persona.getEmail());
+            ps.setString(1, persona.getEmail());
+            ps.setString(2, persona.getNombre());
+            ps.setString(3, persona.getApellidos());
+            ps.setString(4, persona.getPassword());
+            ps.setString(5, emailOld);
             rows = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

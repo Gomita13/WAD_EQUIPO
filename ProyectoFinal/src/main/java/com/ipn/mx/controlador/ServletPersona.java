@@ -29,7 +29,11 @@ public class ServletPersona extends HttpServlet {
                     mostrarReporte(request, response);
                     break;
                 case "cuenta":
-                    System.out.println("Mostrar cuenta");
+                    formCuenta(request, response);
+                    break;
+                case "logout":
+                    request.getSession().invalidate();
+                    response.sendRedirect("index.jsp");
                     break;
                 default:
                     mostrarDashboard(request, response);
@@ -50,6 +54,11 @@ public class ServletPersona extends HttpServlet {
                 case "login":
                     this.login(request, response);
                     break;
+                case "cuenta":
+                    actualizarCuenta(request, response);
+                    break;
+                default:
+                    mostrarDashboard(request, response);
             }
         } else {
             response.sendRedirect("error.jsp");
@@ -112,6 +121,29 @@ public class ServletPersona extends HttpServlet {
         request.setAttribute("tareas", tareas);
         request.setAttribute("proyectos", proyectosActuales);
         request.getRequestDispatcher("reporte.jsp").forward(request, response);
+    }
+
+    private static void formCuenta (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("email");
+        Persona persona = new PersonaDAO().selectOne(new Persona(email));
+        request.setAttribute("persona", persona);
+        request.getRequestDispatcher("account.jsp").forward(request, response);
+    }
+
+    private static void actualizarCuenta (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String emailOld = request.getParameter("emailPersona");
+        String email = request.getParameter("email");
+        String nombre = request.getParameter("nombre");
+        String apellidos = request.getParameter("apellidos");
+        String password = request.getParameter("password");
+        int registros = new PersonaDAO().update(new Persona(email, nombre, apellidos, password), emailOld);
+        System.out.println("Registros modificados " + registros);
+        HttpSession session = request.getSession();
+        session.setAttribute("email", email);
+        session.setAttribute("nombre", nombre);
+        session.setAttribute("apellidos", apellidos);
+        formCuenta(request, response);
     }
 
     private static List<Proyecto> calcularProyectos(List<Proyecto> proyectos) {

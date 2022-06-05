@@ -29,6 +29,7 @@ public class ProyectoDAO {
             "(?, ?)";
     private static final String SQL_UPDATE = "UPDATE proyecto SET nombreproyecto = ?, inicio = ?, fin = ? " +
             "WHERE nombreproyecto = ?";
+    private static final String UPDATE_ADMIN = "UPDATE proyecto SET administrador = ? where administrador = ?";
     private static final String SQL_DELETE = "DELETE FROM proyecto WHERE nombreproyecto = ?";
 
     public List<Proyecto> selectAllProjects() {
@@ -198,10 +199,25 @@ public class ProyectoDAO {
             ps.setDate(3, proyecto.getFin());
             ps.setString(4, proyectoOld);
             rows = ps.executeUpdate();
-            System.out.println("UPDATE proyecto SET nombreproyecto = " + proyecto.getNombreProyecto() + ", " +
-                    "inicio = " + proyecto.getInicio() + ", " +
-                    "fin = " + proyecto.getFin() + " " +
-                    "WHERE nombreproyecto = " + proyectoOld + "");
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return rows;
+    }
+
+    public int updateAdmin(Proyecto proyecto, String adminOld) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        int rows = 0;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(UPDATE_ADMIN);
+            ps.setString(1, proyecto.getAdministrador());
+            ps.setString(2, adminOld);
+            rows = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {

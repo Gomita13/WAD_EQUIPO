@@ -5,6 +5,12 @@
   Time: 16:55
   To change this template use File | Settings | File Templates.
 --%>
+<%
+    String email = (String) session.getAttribute("email");
+    if(email == null) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">

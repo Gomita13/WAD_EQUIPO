@@ -23,9 +23,9 @@
                 <a class="nav-link" href="ServletPersona?accion=reporte">Reporte</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="account.jsp">Cuenta</a>
+                <a class="nav-link" href="ServletPersona?accion=cuenta">Cuenta</a>
             </li>
         </ul>
-        <a href="persona-servlet?accion=0">Cerrar sesión</a>
+        <a href="ServletPersona?accion=logout">Cerrar sesión</a>
     </div>
 </nav>
