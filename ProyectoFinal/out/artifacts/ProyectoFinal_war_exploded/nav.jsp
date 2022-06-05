@@ -14,13 +14,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Dashboard</a>
+                <a class="nav-link" href="ServletPersona?">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="ServletProyecto?accion=proyectos">Mis proyectos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Mis tareas</a>
+                <a class="nav-link" href="ServletPersona?accion=reporte">Reporte</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="account.jsp">Cuenta</a>

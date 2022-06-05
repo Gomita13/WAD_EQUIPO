@@ -10,7 +10,9 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -20,7 +22,21 @@ import java.util.List;
 public class ServletPersona extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        mostrarDashboard(request, response);
+        String accion = request.getParameter("accion");
+        if (accion != null) {
+            switch (accion) {
+                case "reporte":
+                    mostrarReporte(request, response);
+                    break;
+                case "cuenta":
+                    System.out.println("Mostrar cuenta");
+                    break;
+                default:
+                    mostrarDashboard(request, response);
+            }
+        } else {
+            mostrarDashboard(request, response);
+        }
     }
 
     @Override
@@ -85,6 +101,19 @@ public class ServletPersona extends HttpServlet {
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
 
+    private static void mostrarReporte (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("email");
+        Persona persona = new PersonaDAO().selectOne(new Persona(email));
+        List<Tarea> tareas = new TareaDAO().selectTareasEncargado(persona);
+        List<Proyecto> proyectos = new ProyectoDAO().selectAll(persona);
+        List<Proyecto> proyectosActuales = proyectosActuales(proyectos);
+        request.setAttribute("persona", persona);
+        request.setAttribute("tareas", tareas);
+        request.setAttribute("proyectos", proyectosActuales);
+        request.getRequestDispatcher("reporte.jsp").forward(request, response);
+    }
+
     private static List<Proyecto> calcularProyectos(List<Proyecto> proyectos) {
         List<Proyecto> proximosProyectos = new ArrayList<>();
         LocalDate fechaHoy = LocalDate.now();
@@ -97,5 +126,19 @@ public class ServletPersona extends HttpServlet {
             }
         }
         return proximosProyectos;
+    }
+
+    public static List<Proyecto> proyectosActuales(List<Proyecto> proyectos) {
+        List<Proyecto> proyectosActuales = new ArrayList<>();
+        LocalDate fechaHoy = LocalDate.now();
+        LocalDate fechaInicio, fechaFin;
+        for(Proyecto proyecto: proyectos) {
+            fechaInicio = proyecto.getInicio().toLocalDate();
+            fechaFin = proyecto.getFin().toLocalDate();
+            if((ChronoUnit.DAYS.between(fechaHoy, fechaInicio) < 0) && (ChronoUnit.DAYS.between(fechaHoy, fechaFin) > 0)) {
+                proyectosActuales.add(proyecto);
+            }
+        }
+        return proyectosActuales;
     }
 }
