@@ -33,6 +33,9 @@ public class ServletProyecto extends HttpServlet {
                 case "editar":
                     formEditarProyecto(request, response);
                     break;
+                case "eliminar":
+                    eliminarProyecto(request, response);
+                    break;
                 default:
                     System.out.println("Aqui algo valió madre");
                     mostrarMisProyectos(request, response);
@@ -141,6 +144,14 @@ public class ServletProyecto extends HttpServlet {
         System.out.println(proyecto.getInicio());
         System.out.println(proyecto.getFin());
         System.out.println("Se modificó " + registros + " proyecto");
+        mostrarMisProyectos(request, response);
+    }
+
+    private void eliminarProyecto (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        Proyecto proyecto = new Proyecto(nombreProyecto);
+        int registros = new ProyectoDAO().delete(proyecto);
+        System.out.println("Registros eliminados " + registros);
         mostrarMisProyectos(request, response);
     }
 

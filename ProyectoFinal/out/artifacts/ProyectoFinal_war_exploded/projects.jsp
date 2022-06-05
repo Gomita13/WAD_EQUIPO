@@ -32,6 +32,11 @@
                             Editar proyecto
                         </a>
                     </div>
+                    <div class="col">
+                        <a href="ServletProyecto?accion=eliminar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                            Eliminar proyecto
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
