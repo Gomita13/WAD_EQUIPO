@@ -3,6 +3,7 @@ package com.ipn.mx.modelo.dao;
 import com.ipn.mx.modelo.Conexion;
 import com.ipn.mx.modelo.entidades.Persona;
 import com.ipn.mx.modelo.entidades.Proyecto;
+import com.ipn.mx.modelo.entidades.Tarea;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -40,7 +41,7 @@ public class ProyectoDAO {
         List<Proyecto> proyectos = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
-            ps = conn.prepareStatement(SQL_SELECT);
+            ps = conn.prepareStatement(SELECT_ALL_PROJECTS);
             rs = ps.executeQuery();
             while (rs.next()) {
                 String nombreProyecto = rs.getString("nombreproyecto");
@@ -77,6 +78,14 @@ public class ProyectoDAO {
                 Date fin = rs.getDate("fin");
                 String administrador = rs.getString("administrador");
                 proyecto = new Proyecto(nombreProyecto, inicio, fin, administrador);
+                List<Tarea> tareas = new TareaDAO().selectTareas(proyecto);
+                List<Tarea> tareasCompletadas = new ArrayList<>();
+                for (Tarea tarea : tareas) {
+                    if (tarea.isCompletada()) {
+                        tareasCompletadas.add(tarea);
+                    }
+                }
+                proyecto.setProgreso(tareasCompletadas.size(), tareas.size());
                 proyectos.add(proyecto);
             }
         } catch (SQLException ex) {

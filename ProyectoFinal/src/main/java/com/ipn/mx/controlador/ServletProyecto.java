@@ -116,6 +116,7 @@ public class ServletProyecto extends HttpServlet {
         Date inicio = parseDate(inicioStr);
         Date fin = parseDate(finStr);
         Proyecto proyecto = new Proyecto(nombreProyecto, inicio, fin, administrador);
+        proyecto.setProgreso(0, 0);
         Persona persona = new Persona(administrador);
         int registrosModificados = new ProyectoDAO().insert(proyecto);
         int registros = new ProyectoDAO().insertColaborador(proyecto, persona);

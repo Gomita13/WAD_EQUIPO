@@ -24,7 +24,7 @@
             --clr-lightgreen: linear-gradient(to right, #84ffc9 0%, #aab2ff 100%);
             --clr-dark-green: linear-gradient(to right, #4a9b7f 0%, #0a3431 100%);
             --clr-light-pink: linear-gradient(to right, #7c65a9 0%, #96d4ca 100%);
-            --clr-light-lime: linear-gradient(to right, #8de9d5 0%, #32c4c0 100%);
+            --clr-light-lime: linear-gradient(to right, #ef32d9 0%, #89fffd 100%);
         }
     </style>
     <link rel="stylesheet" href="css/progressBar/progressBar.min.css">
@@ -61,7 +61,14 @@
                         </a>
                     </div>
                     <div class="col">
-                        <div class="ab-progress" data-progress data-value="70" data-fill="var(--clr-lightgreen)" data-height="35" data-title="HTML5"></div>
+                        <c:choose>
+                            <c:when test="${Double.isNaN(proyecto.getProgreso())}">
+                                <div class="ab-progress" data-progress data-value="0" data-fill="var(--clr-light-pink)" data-height="35"></div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="ab-progress" data-progress data-value="${proyecto.getProgreso()}" data-fill="var(--clr-light-pink)" data-height="35"></div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
