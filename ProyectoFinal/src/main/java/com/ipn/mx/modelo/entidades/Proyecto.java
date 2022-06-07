@@ -10,6 +10,7 @@ public class Proyecto {
     private Date inicio;
     private Date fin;
     private String administrador;
+    private int progreso;
 
     public Proyecto() {
     }
@@ -61,5 +62,13 @@ public class Proyecto {
 
     public void setAdministrador(String administrador) {
         this.administrador = administrador;
+    }
+
+    public int getProgreso() {
+        return progreso;
+    }
+
+    public void setProgreso(int progreso) {
+        this.progreso = progreso;
     }
 }
