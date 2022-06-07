@@ -10,6 +10,7 @@ public class Proyecto {
     private Date inicio;
     private Date fin;
     private String administrador;
+    private float progreso;
 
     public Proyecto() {
     }
@@ -61,5 +62,13 @@ public class Proyecto {
 
     public void setAdministrador(String administrador) {
         this.administrador = administrador;
+    }
+
+    public float getProgreso() {
+        return progreso;
+    }
+
+    public void setProgreso(float tareasCompletadas, float totalTareas) {
+        this.progreso = (tareasCompletadas/totalTareas) * 100;
     }
 }

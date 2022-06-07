@@ -86,8 +86,8 @@ public class ServletProyecto extends HttpServlet {
         Proyecto proyecto = new Proyecto(nombreProyecto);
         Proyecto proyectoRes = new ProyectoDAO().selectOne(proyecto);
         long diasRestantes = calcularDiasRestantes(proyectoRes);
-        List<Tarea> tareas = new TareaDAO().selectTareas(proyectoRes);
         List<Persona> colaboradores = new ProyectoDAO().selectColaboradores(proyectoRes);
+        List<Tarea> tareas = new TareaDAO().selectTareas(proyectoRes);
         List<Tarea> tareasCompletadas = new ArrayList<>();
         List<Tarea> tareasNoCompletadas = new ArrayList<>();
         for (Tarea tarea : tareas) {
@@ -116,6 +116,7 @@ public class ServletProyecto extends HttpServlet {
         Date inicio = parseDate(inicioStr);
         Date fin = parseDate(finStr);
         Proyecto proyecto = new Proyecto(nombreProyecto, inicio, fin, administrador);
+        proyecto.setProgreso(0, 0);
         Persona persona = new Persona(administrador);
         int registrosModificados = new ProyectoDAO().insert(proyecto);
         int registros = new ProyectoDAO().insertColaborador(proyecto, persona);
