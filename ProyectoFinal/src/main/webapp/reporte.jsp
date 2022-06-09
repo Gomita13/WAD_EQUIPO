@@ -6,16 +6,39 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%
-String email = (String) session.getAttribute("email");
-if(email == null) {
-    response.sendRedirect("index.jsp");
-}
+    String email = (String) session.getAttribute("email");
+    if (email == null) {
+        response.sendRedirect("index.jsp");
+    }
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Reporte</title>
+    <script>
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "Desempeño en tus tareas"
+                },
+                axisY: {
+                    includeZero: true
+                },
+                axisX: {
+
+                },
+                data: [{
+                    type: "column",
+                    yValueFormatString: "#,##0\"\"",
+                    dataPoints: ${datosGrafica}
+                }]
+            });
+            chart.render();
+
+        }
+    </script>
 </head>
 <body>
 <jsp:include page="nav.jsp"/>
@@ -29,8 +52,17 @@ if(email == null) {
 <section>
     <h2>Tareas pendientes</h2>
     <c:forEach var="tarea" items="${tareas}">
-        <div>${tarea.getNombreTarea()}</div>
+        <c:choose>
+            <c:when test="${tarea.isCompletada()}">
+                <div>${tarea.getNombreTarea()} (Completada)</div>
+            </c:when>
+            <c:otherwise>
+                <div>${tarea.getNombreTarea()} (Incompleta)</div>
+            </c:otherwise>
+        </c:choose>
     </c:forEach>
 </section>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>

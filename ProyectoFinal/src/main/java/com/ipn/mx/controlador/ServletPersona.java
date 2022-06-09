@@ -1,5 +1,6 @@
 package com.ipn.mx.controlador;
 
+import com.google.gson.Gson;
 import com.ipn.mx.modelo.dao.PersonaDAO;
 import com.ipn.mx.modelo.dao.ProyectoDAO;
 import com.ipn.mx.modelo.dao.TareaDAO;
@@ -16,7 +17,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "ServletPersona", value = "/ServletPersona")
 public class ServletPersona extends HttpServlet {
@@ -117,10 +120,24 @@ public class ServletPersona extends HttpServlet {
         List<Tarea> tareas = new TareaDAO().selectTareasEncargado(persona);
         List<Proyecto> proyectos = new ProyectoDAO().selectAll(persona);
         List<Proyecto> proyectosActuales = proyectosActuales(proyectos);
+        String datosGrafica = generarDatosGrafica(tareas);
         request.setAttribute("persona", persona);
         request.setAttribute("tareas", tareas);
         request.setAttribute("proyectos", proyectosActuales);
+        request.setAttribute("datosGrafica", datosGrafica);
         request.getRequestDispatcher("reporte.jsp").forward(request, response);
+    }
+
+    private static String generarDatosGrafica(List<Tarea> tareas) {
+        Gson gsonObj = new Gson();
+        Map<Object,Object> map = null;
+        List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
+        List<Tarea> tareasCompletadas = ServletTarea.getTareasCompletadas(tareas);
+        List<Tarea> tareasIncompletas = ServletTarea.getTareasIncompletas(tareas);
+        map = new HashMap<Object,Object>(); map.put("label", "Asignadas"); map.put("y", tareas.size()); list.add(map);
+        map = new HashMap<Object,Object>(); map.put("label", "Completadas"); map.put("y", tareasCompletadas.size()); list.add(map);
+        map = new HashMap<Object,Object>(); map.put("label", "Incompletas"); map.put("y", tareasIncompletas.size()); list.add(map);
+        return gsonObj.toJson(list);
     }
 
     private static void formCuenta (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

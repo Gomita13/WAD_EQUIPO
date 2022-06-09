@@ -11,6 +11,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ServletTarea", value = "/ServletTarea")
@@ -130,5 +131,25 @@ public class ServletTarea extends HttpServlet {
         System.out.println("Registros modificados " + registrosModificados);
         request.setAttribute("nombreProyecto", nombreProyecto);
         getServletContext().getRequestDispatcher("/ServletProyecto?accion=detalles").forward(request, response);
+    }
+
+    public static List<Tarea> getTareasCompletadas(List<Tarea> tareas) {
+        List<Tarea> tareasCompletadas = new ArrayList<>();
+        for(Tarea tarea: tareas) {
+            if(tarea.isCompletada()) {
+                tareasCompletadas.add(tarea);
+            }
+        }
+        return tareasCompletadas;
+    }
+
+    public static List<Tarea> getTareasIncompletas(List<Tarea> tareas) {
+        List<Tarea> tareasIncompletas = new ArrayList<>();
+        for(Tarea tarea: tareas) {
+            if(!tarea.isCompletada()) {
+                tareasIncompletas.add(tarea);
+            }
+        }
+        return tareasIncompletas;
     }
 }
