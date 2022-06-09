@@ -15,6 +15,12 @@ public class Tarea {
         this.nombreProyecto = nombreProyecto;
     }
 
+    public Tarea(String nombreTarea, String nombreProyecto, boolean completada) {
+        this.nombreTarea = nombreTarea;
+        this.nombreProyecto = nombreProyecto;
+        this.completada = completada;
+    }
+
     public Tarea(String nombreTarea, String nombreProyecto, String encargado, String descripcion, boolean completada) {
         this.nombreTarea = nombreTarea;
         this.nombreProyecto = nombreProyecto;

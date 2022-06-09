@@ -74,6 +74,7 @@ public class ServletProyecto extends HttpServlet {
         String email = (String) session.getAttribute("email");
         Persona persona = new Persona(email);
         List<Proyecto> misProyectos = new ProyectoDAO().selectAll(persona);
+        request.setAttribute("usuario", email);
         request.setAttribute("misProyectos", misProyectos);
         request.getRequestDispatcher("projects.jsp").forward(request, response);
     }
@@ -83,6 +84,9 @@ public class ServletProyecto extends HttpServlet {
         String emailEncargado = (String) session.getAttribute("email");
         Persona encargado = new Persona(emailEncargado);
         String nombreProyecto = request.getParameter("nombreProyecto");
+        if(nombreProyecto == null) {
+            nombreProyecto = (String) request.getAttribute("nombreProyecto");
+        }
         Proyecto proyecto = new Proyecto(nombreProyecto);
         Proyecto proyectoRes = new ProyectoDAO().selectOne(proyecto);
         long diasRestantes = calcularDiasRestantes(proyectoRes);
@@ -104,6 +108,7 @@ public class ServletProyecto extends HttpServlet {
         request.setAttribute("tareasNoCompletadas", tareasNoCompletadas);
         request.setAttribute("misTareas", misTareas);
         request.setAttribute("colaboradores", colaboradores);
+        request.setAttribute("usuario", emailEncargado);
         request.getRequestDispatcher("project_details.jsp").forward(request, response);
     }
 

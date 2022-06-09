@@ -22,7 +22,8 @@ public class TareaDAO {
             "completada) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE tarea SET nombretarea = ?, encargado = ?, " +
             "descripcion = ? WHERE nombretarea = ? AND nombreproyecto = ?";
-    private static final String COMPLETAR_TAREA = "UPDATE tarea SET completada = ?";
+    private static final String COMPLETAR_TAREA = "UPDATE tarea SET completada = ? WHERE nombretarea = ? AND " +
+            "nombreproyecto = ?";
     private static final String SQL_DELETE = "DELETE FROM tarea WHERE nombretarea = ? AND nombreproyecto = ?";
 
     public Tarea selectOne(Tarea tarea) {
@@ -161,6 +162,27 @@ public class TareaDAO {
             ps.setString(3, tarea.getDescripcion());
             ps.setString(4, tareaOld);
             ps.setString(5, tarea.getNombreProyecto());
+            rows = ps.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return rows;
+    }
+
+    public int completarTarea(Tarea tarea) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        int rows = 0;
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(COMPLETAR_TAREA);
+            ps.setBoolean(1, tarea.isCompletada());
+            ps.setString(2, tarea.getNombreTarea());
+            ps.setString(3, tarea.getNombreProyecto());
             rows = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -2,6 +2,7 @@ package com.ipn.mx.modelo.dao;
 
 import com.ipn.mx.modelo.Conexion;
 import com.ipn.mx.modelo.entidades.Persona;
+import com.ipn.mx.modelo.entidades.Proyecto;
 
 import java.sql.*;
 import java.util.*;
@@ -13,7 +14,7 @@ public class PersonaDAO {
             " AND password = ?";
     private static final String SELECT_BY_PROJECT = "SELECT p.email, p.nombre, p.apellidos from persona p INNER JOIN" +
             " colaborador c on p.email = c.emailpersona INNER JOIN proyecto p2 on p2.nombreproyecto = c.nombreproyecto" +
-            " WHERE p2.nombreproyecto = 'Web'";
+            " WHERE p2.nombreproyecto = ?";
     private static final String SQL_INSERT = "INSERT INTO persona (email, nombre, apellidos, password) "
             + " VALUES(?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE persona SET email=?, nombre=?, apellidos=?, password=?" +
@@ -100,6 +101,34 @@ public class PersonaDAO {
             Conexion.close(conn);
         }
         return personaRes;
+    }
+
+    public List<Persona> selectByProject(Proyecto proyecto) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Persona persona;
+        List<Persona> personas = new ArrayList<>();
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(SELECT_BY_PROJECT);
+            ps.setString(1, proyecto.getNombreProyecto());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String email = rs.getString("email");
+                String nombre = rs.getString("nombre");
+                String apellidos = rs.getString("apellidos");
+                persona = new Persona(email, nombre, apellidos);
+                personas.add(persona);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(ps);
+            Conexion.close(conn);
+        }
+        return personas;
     }
 
     public int insert(Persona persona) {

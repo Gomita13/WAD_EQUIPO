@@ -22,7 +22,17 @@
 <header>
     <p>${proyectoRes.getNombreProyecto()}</p>
     <p>Fecha de inicio: ${proyectoRes.getInicio()}, Fecha de finalización: ${proyectoRes.getFin()}</p>
-    <p>Días restantes: ${diasRestantes}</p>
+    <c:choose>
+        <c:when test="${diasRestantes == 0}">
+            <p>Hoy es el último día para entregar el proyecto</p>
+        </c:when>
+        <c:when test="${diasRestantes < 0}">
+            <p>La fecha de entrega del proyecto ha expirado</p>
+        </c:when>
+        <c:otherwise>
+            <p>Días restantes: ${diasRestantes}</p>
+        </c:otherwise>
+    </c:choose>
 </header>
 <section>
     <h2>Tareas pendientes</h2>
@@ -30,14 +40,27 @@
         <p>${tarea.getNombreTarea()}</p>
         <p>${tarea.getDescripcion()}</p>
         <p>Asignada a: ${tarea.getEncargado()}</p>
-        <a href="ServletTarea?accion=editar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
-            Editar tarea
-        </a>
-        <a href="ServletTarea?accion=eliminar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
-            Eliminar tarea
-        </a>
+        <c:choose>
+            <c:when test="${usuario.equals(proyectoRes.getAdministrador())}">
+                <a href="ServletTarea?accion=completar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+                    Completar tarea
+                </a>
+                <a href="ServletTarea?accion=editar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+                    Editar tarea
+                </a>
+                <a href="ServletTarea?accion=eliminar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+                    Eliminar tarea
+                </a>
+            </c:when>
+        </c:choose>
     </c:forEach>
-    <a href="ServletTarea?accion=agregarTarea&nombreProyecto=${proyectoRes.getNombreProyecto()}">Agregar tarea</a>
+<c:choose>
+    <c:when test="${usuario.equals(proyectoRes.getAdministrador())}">
+        <a href="ServletTarea?accion=agregarTarea&nombreProyecto=${proyectoRes.getNombreProyecto()}">
+            Agregar tarea
+        </a>
+    </c:when>
+</c:choose>
 </section>
 <section>
     <h2>Tareas completadas</h2>
@@ -45,14 +68,46 @@
         <p>${tarea.getNombreTarea()}</p>
         <p>${tarea.getDescripcion()}</p>
         <p>Asignada a: ${tarea.getEncargado()}</p>
+        <c:choose>
+            <c:when test="${usuario.equals(proyectoRes.getAdministrador())}">
+                <a href="ServletTarea?accion=completar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+                    Marcar como pendiente
+                </a>
+                <a href="ServletTarea?accion=editar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+                    Editar tarea
+                </a>
+                <a href="ServletTarea?accion=eliminar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+                    Eliminar tarea
+                </a>
+            </c:when>
+        </c:choose>
     </c:forEach>
 </section>
 <section>
     <h2>Mis tareas</h2>
-    <c:forEach var="tarea" items="${misTareas}">
-        <p>${tarea.getNombreTarea()}</p>
-        <p>${tarea.getDescripcion()}</p>
-    </c:forEach>
+    <c:choose>
+        <c:when test="${misTareas.size() == 0}">
+            <p>No tienes tareas asignadas para este proyecto aún</p>
+        </c:when>
+        <c:otherwise>
+            <c:forEach var="tarea" items="${misTareas}">
+                <p>${tarea.getNombreTarea()}</p>
+                <p>${tarea.getDescripcion()}</p>
+                <c:choose>
+                    <c:when test="${tarea.isCompletada() == false}">
+                        <a href="ServletTarea?accion=completar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+                            Completar tarea
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="ServletTarea?accion=completar&nombre=${tarea.getNombreTarea()}&proyecto=${tarea.getNombreProyecto()}">
+                            Marcar como pendiente
+                        </a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
 </section>
 <section>
     <h2>Integrantes</h2>

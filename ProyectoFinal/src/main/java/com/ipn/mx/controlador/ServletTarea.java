@@ -26,6 +26,9 @@ public class ServletTarea extends HttpServlet {
                 case "editar":
                     this.formEditarTarea(request, response);
                     break;
+                case "completar":
+                    this.completarTarea(request, response);
+                    break;
                 case "eliminar":
                     this.eliminarTarea(request, response);
                     break;
@@ -58,7 +61,7 @@ public class ServletTarea extends HttpServlet {
             Proyecto proyecto = new Proyecto(nombreProyecto);
             Proyecto proyectoRes = new ProyectoDAO().selectOne(proyecto);
             String proyectoNombre = proyectoRes.getNombreProyecto();
-            List<Persona> personas = new PersonaDAO().selectAll();
+            List<Persona> personas = new PersonaDAO().selectByProject(proyectoRes);
             request.setAttribute("nombreProyecto", proyectoNombre);
             request.setAttribute("personas", personas);
             request.getRequestDispatcher("agregar_tarea_proyecto.jsp").forward(request, response);
@@ -77,7 +80,7 @@ public class ServletTarea extends HttpServlet {
         String nombreProyecto = request.getParameter("proyecto");
         Tarea tarea = new Tarea(nombreTarea, nombreProyecto);
         Tarea tareaRes = new TareaDAO().selectOne(tarea);
-        List<Persona> personas = new PersonaDAO().selectAll();
+        List<Persona> personas = new PersonaDAO().selectByProject(new Proyecto(nombreProyecto));
         request.setAttribute("tareaRes", tareaRes);
         request.setAttribute("personas", personas);
         request.getRequestDispatcher("editarTarea.jsp").forward(request, response);
@@ -108,12 +111,24 @@ public class ServletTarea extends HttpServlet {
         ServletProyecto.detallesProyecto(request, response);
     }
 
+    private void completarTarea(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombreTarea = request.getParameter("nombre");
+        String nombreProyecto = request.getParameter("proyecto");
+        Tarea tarea = new TareaDAO().selectOne(new Tarea(nombreTarea, nombreProyecto));
+        tarea.setCompletada(!tarea.isCompletada());
+        int registros = new TareaDAO().completarTarea(tarea);
+        System.out.println("Registros modificados " + registros);
+        request.setAttribute("nombreProyecto", nombreProyecto);
+        getServletContext().getRequestDispatcher("/ServletProyecto?accion=detalles").forward(request, response);
+    }
+
     private void eliminarTarea (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombreTarea = request.getParameter("nombre");
         String nombreProyecto = request.getParameter("proyecto");
         Tarea tarea = new Tarea(nombreTarea, nombreProyecto);
         int registrosModificados = new TareaDAO().delete(tarea);
         System.out.println("Registros modificados " + registrosModificados);
-        ServletProyecto.mostrarMisProyectos(request, response);
+        request.setAttribute("nombreProyecto", nombreProyecto);
+        getServletContext().getRequestDispatcher("/ServletProyecto?accion=detalles").forward(request, response);
     }
 }

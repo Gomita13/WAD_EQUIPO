@@ -50,26 +50,44 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col"><p class="date">Desde ${proyecto.getInicio()} hasta ${proyecto.getFin()}</p></div>
-                    <div class="col">
-                        <a href="ServletProyecto?accion=editar&nombreProyecto=${proyecto.getNombreProyecto()}">
-                            Editar proyecto
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="ServletProyecto?accion=eliminar&nombreProyecto=${proyecto.getNombreProyecto()}">
-                            Eliminar proyecto
-                        </a>
-                    </div>
-                    <div class="col">
-                        <c:choose>
-                            <c:when test="${Double.isNaN(proyecto.getProgreso())}">
-                                <div class="ab-progress" data-progress data-value="0" data-fill="var(--clr-light-pink)" data-height="35"></div>
-                            </c:when>
-                            <c:otherwise>
-                                <div class="ab-progress" data-progress data-value="${proyecto.getProgreso()}" data-fill="var(--clr-light-pink)" data-height="35"></div>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
+                    <c:choose>
+                        <c:when test="${usuario.equals(proyecto.getAdministrador())}">
+                            <div class="col">
+                                <c:choose>
+                                    <c:when test="${Double.isNaN(proyecto.getProgreso())}">
+                                        <div class="ab-progress" data-progress data-value="0" data-fill="var(--clr-light-pink)" data-height="35"></div>
+                                        <a href="ServletProyecto?accion=editar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                                            Editar proyecto
+                                        </a>
+                                        <a href="ServletProyecto?accion=eliminar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                                            Eliminar proyecto
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="ab-progress" data-progress data-value="${proyecto.getProgreso()}" data-fill="var(--clr-light-pink)" data-height="35"></div>
+                                        <a href="ServletProyecto?accion=editar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                                            Editar proyecto
+                                        </a>
+                                        <a href="ServletProyecto?accion=eliminar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                                            Eliminar proyecto
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="col">
+                                <c:choose>
+                                    <c:when test="${Double.isNaN(proyecto.getProgreso())}">
+                                        <div class="ab-progress" data-progress data-value="0" data-fill="var(--clr-light-pink)" data-height="35"></div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="ab-progress" data-progress data-value="${proyecto.getProgreso()}" data-fill="var(--clr-light-pink)" data-height="35"></div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
