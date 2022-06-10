@@ -7,13 +7,12 @@ import com.ipn.mx.modelo.dao.TareaDAO;
 import com.ipn.mx.modelo.entidades.Persona;
 import com.ipn.mx.modelo.entidades.Proyecto;
 import com.ipn.mx.modelo.entidades.Tarea;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-
-import javax.swing.*;
-import java.io.IOException;
-import java.sql.Date;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -37,6 +36,9 @@ public class ServletPersona extends HttpServlet {
                 case "logout":
                     request.getSession().invalidate();
                     response.sendRedirect("index.jsp");
+                    break;
+                case "generarReporte":
+                    generarReporte(request, response);
                     break;
                 default:
                     mostrarDashboard(request, response);
@@ -107,7 +109,7 @@ public class ServletPersona extends HttpServlet {
         Persona persona = new Persona(email, nombre, apellidos);
         List<Tarea> tareas = new TareaDAO().selectTareasEncargado(persona);
         List<Proyecto> proyectos = new ProyectoDAO().selectAll(persona);
-        List<Proyecto> proximosProyectos = calcularProyectos(proyectos);
+        List<Proyecto> proximosProyectos = ServletProyecto.calcularProyectos(proyectos);
         request.setAttribute("tareas", tareas);
         request.setAttribute("proximosProyectos", proximosProyectos);
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
@@ -119,7 +121,7 @@ public class ServletPersona extends HttpServlet {
         Persona persona = new PersonaDAO().selectOne(new Persona(email));
         List<Tarea> tareas = new TareaDAO().selectTareasEncargado(persona);
         List<Proyecto> proyectos = new ProyectoDAO().selectAll(persona);
-        List<Proyecto> proyectosActuales = proyectosActuales(proyectos);
+        List<Proyecto> proyectosActuales = ServletProyecto.proyectosActuales(proyectos);
         String datosGrafica = generarDatosGrafica(tareas);
         request.setAttribute("persona", persona);
         request.setAttribute("tareas", tareas);
@@ -163,31 +165,138 @@ public class ServletPersona extends HttpServlet {
         formCuenta(request, response);
     }
 
-    private static List<Proyecto> calcularProyectos(List<Proyecto> proyectos) {
-        List<Proyecto> proximosProyectos = new ArrayList<>();
-        LocalDate fechaHoy = LocalDate.now();
-        LocalDate fechaProyecto;
-        for (Proyecto proyecto: proyectos) {
-            fechaProyecto = proyecto.getFin().toLocalDate();
-            long diasRestantes = ChronoUnit.DAYS.between(fechaHoy, fechaProyecto);
-            if(diasRestantes > 0 && diasRestantes < 14) {
-                proximosProyectos.add(proyecto);
-            }
+    private void generarReporte(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("email");
+        if(email == null) {
+            response.sendRedirect("index.jsp");
         }
-        return proximosProyectos;
+        response.setContentType("application/pdf");
+        OutputStream out = response.getOutputStream();
+        String emailPersona = request.getParameter("nombrePersona");
+        Persona persona = new PersonaDAO().selectOne(new Persona(emailPersona));
+        try {
+            try {
+                Document document = new Document();
+                PdfWriter.getInstance(document, out);
+                document.open();
+                document.add(tituloReporte(persona));
+                com.itextpdf.text.List proyectosActualesPdf = proyectosActualesPdf(document, persona);
+                document.add(proyectosActualesPdf);
+                document.add(new Phrase(Chunk.NEWLINE));
+                com.itextpdf.text.List proyectosProximosPdf = proyectosProximosPdf(document, persona);
+                document.add(proyectosProximosPdf);
+                document.add(new Phrase(Chunk.NEWLINE));
+                com.itextpdf.text.List proyectosVencidosPdf = proyectosVencidosPdf(document, persona);
+                document.add(proyectosVencidosPdf);
+                document.add(new Phrase(Chunk.NEWLINE));
+                com.itextpdf.text.List tareasPendientesPdf = tareasPendientesPdf(document, persona);
+                document.add(tareasPendientesPdf);
+                document.add(new Phrase(Chunk.NEWLINE));
+                com.itextpdf.text.List tareasCompletadasPdf = tareasCompletadasPdf(document, persona);
+                document.add(tareasCompletadasPdf);
+                document.add(new Phrase(Chunk.NEWLINE));
+                document.close();
+            } catch (Exception ex) {
+                ex.getMessage();
+            }
+        } finally {
+            out.close();
+        }
     }
 
-    public static List<Proyecto> proyectosActuales(List<Proyecto> proyectos) {
-        List<Proyecto> proyectosActuales = new ArrayList<>();
-        LocalDate fechaHoy = LocalDate.now();
-        LocalDate fechaInicio, fechaFin;
-        for(Proyecto proyecto: proyectos) {
-            fechaInicio = proyecto.getInicio().toLocalDate();
-            fechaFin = proyecto.getFin().toLocalDate();
-            if((ChronoUnit.DAYS.between(fechaHoy, fechaInicio) < 0) && (ChronoUnit.DAYS.between(fechaHoy, fechaFin) > 0)) {
-                proyectosActuales.add(proyecto);
+    private Paragraph tituloReporte(Persona persona) {
+        Paragraph titulo = new Paragraph();
+        Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD, BaseColor.BLACK);
+        titulo.add(new Phrase("Reporte de " + persona.getNombre() + " " + persona.getApellidos(), fontTitulo));
+        titulo.setAlignment(Element.ALIGN_CENTER);
+        titulo.add(new Phrase(Chunk.NEWLINE));
+        titulo.add(new Phrase(Chunk.NEWLINE));
+        return titulo;
+    }
+
+    private com.itextpdf.text.List proyectosActualesPdf(Document document, Persona persona) throws DocumentException {
+        com.itextpdf.text.List proyectosActualesPdf = new com.itextpdf.text.List();
+        Paragraph titulo = new Paragraph();
+        Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLACK);
+        titulo.add(new Phrase("Proyectos actuales", fontTitulo));
+        titulo.add(new Phrase(Chunk.NEWLINE));
+        document.add(titulo);
+        List<Proyecto> proyectos = new ProyectoDAO().selectAll(persona);
+        List<Proyecto> proyectosActuales = ServletProyecto.proyectosActuales(proyectos);
+        for(Proyecto proyecto: proyectosActuales) {
+            String infoProyecto;
+            if(Double.isNaN(proyecto.getProgreso())) {
+                infoProyecto = proyecto.getNombreProyecto() + " Inicio " + proyecto.getInicio() + ", fin " +
+                        proyecto.getFin() + ", progreso: 0%";
+            } else {
+                infoProyecto = proyecto.getNombreProyecto() + " Inicio " + proyecto.getInicio() + ", fin " +
+                        proyecto.getFin() + ", progreso: " + proyecto.getProgreso() + "%";
             }
+            proyectosActualesPdf.add(infoProyecto);
         }
-        return proyectosActuales;
+        return proyectosActualesPdf;
+    }
+
+    private com.itextpdf.text.List proyectosProximosPdf(Document document, Persona persona) throws DocumentException {
+        com.itextpdf.text.List proyectosProximosPdf = new com.itextpdf.text.List();
+        Paragraph titulo = new Paragraph();
+        Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLACK);
+        titulo.add(new Phrase("Próximos proyectos", fontTitulo));
+        titulo.add(new Phrase(Chunk.NEWLINE));
+        document.add(titulo);
+        List<Proyecto> proyectos = new ProyectoDAO().selectAll(persona);
+        List<Proyecto> proyectosProximos = ServletProyecto.proximosProyectos(proyectos);
+        for(Proyecto proyecto: proyectosProximos) {
+            String infoProyecto = proyecto.getNombreProyecto() + " Inicia el " + proyecto.getInicio();
+            proyectosProximosPdf.add(infoProyecto);
+        }
+        return proyectosProximosPdf;
+    }
+
+    private com.itextpdf.text.List proyectosVencidosPdf(Document document, Persona persona) throws DocumentException {
+        com.itextpdf.text.List proyectosVencidosPdf = new com.itextpdf.text.List();
+        Paragraph titulo = new Paragraph();
+        Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLACK);
+        titulo.add(new Phrase("Proyectos vencidos", fontTitulo));
+        titulo.add(new Phrase(Chunk.NEWLINE));
+        document.add(titulo);
+        List<Proyecto> proyectos = new ProyectoDAO().selectAll(persona);
+        List<Proyecto> proyectosVencidos = ServletProyecto.proyectosVencidos(proyectos);
+        for(Proyecto proyecto: proyectosVencidos) {
+            String infoProyecto = proyecto.getNombreProyecto() + " venció el " + proyecto.getFin();
+            proyectosVencidosPdf.add(infoProyecto);
+        }
+        return proyectosVencidosPdf;
+    }
+
+    private com.itextpdf.text.List tareasPendientesPdf(Document document, Persona persona) throws DocumentException {
+        com.itextpdf.text.List tareasPendientesPdf = new com.itextpdf.text.List();
+        Paragraph titulo = new Paragraph();
+        Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLACK);
+        titulo.add(new Phrase("Tareas pendientes", fontTitulo));
+        titulo.add(new Phrase(Chunk.NEWLINE));
+        document.add(titulo);
+        List<Tarea> tareas = new TareaDAO().selectTareasEncargado(persona);
+        List<Tarea> tareasPendientes = ServletTarea.getTareasIncompletas(tareas);
+        for(Tarea tarea: tareasPendientes) {
+            tareasPendientesPdf.add(tarea.getNombreTarea() + "\n" + tarea.getDescripcion());
+        }
+        return tareasPendientesPdf;
+    }
+
+    private com.itextpdf.text.List tareasCompletadasPdf(Document document, Persona persona) throws DocumentException {
+        com.itextpdf.text.List tareasCompletadasPdf = new com.itextpdf.text.List();
+        Paragraph titulo = new Paragraph();
+        Font fontTitulo = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLACK);
+        titulo.add(new Phrase("Tareas completadas", fontTitulo));
+        titulo.add(new Phrase(Chunk.NEWLINE));
+        document.add(titulo);
+        List<Tarea> tareas = new TareaDAO().selectTareasEncargado(persona);
+        List<Tarea> tareasCompletadas = ServletTarea.getTareasIncompletas(tareas);
+        for(Tarea tarea: tareasCompletadas) {
+            tareasCompletadasPdf.add(tarea.getNombreTarea() + "\n" + tarea.getDescripcion());
+        }
+        return tareasCompletadasPdf;
     }
 }

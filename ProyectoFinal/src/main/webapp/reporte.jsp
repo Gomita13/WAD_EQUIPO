@@ -61,6 +61,9 @@
             </c:otherwise>
         </c:choose>
     </c:forEach>
+    <a href="ServletPersona?accion=generarReporte&nombrePersona=${persona.getEmail()}" target="_blank">
+        Generar reporte en PDF
+    </a>
 </section>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProyectoDAO {
-    private static final String SELECT_ALL_PROJECTS = "SELECT * FROM proyecto";
+    private static final String SELECT_ALL_PROJECTS = "SELECT * FROM proyecto ORDER BY fin ASC";
     //Obtiene los proyectos en los que es colaborador cierta persona
     private static final String SQL_SELECT = "SELECT proyecto.nombreproyecto, proyecto.inicio, proyecto.fin," +
             " proyecto.administrador FROM proyecto INNER JOIN colaborador ON " +
             "proyecto.nombreproyecto = colaborador.nombreproyecto INNER JOIN persona ON " +
-            "colaborador.emailpersona = persona.email WHERE persona.email = ?";
+            "colaborador.emailpersona = persona.email WHERE persona.email = ? ORDER BY proyecto.fin ASC";
     //Obtiene todos los datos de un proyecto de acuerdo con el nombre
     private static final String SELECT_BY_NOMBRE = "SELECT * FROM proyecto WHERE nombreproyecto = ?";
     //Obtiene los colaboradores de un proyecto en específico

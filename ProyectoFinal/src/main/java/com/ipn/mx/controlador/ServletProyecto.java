@@ -195,4 +195,58 @@ public class ServletProyecto extends HttpServlet {
         LocalDate localDate = LocalDate.parse(date);
         return Date.valueOf(localDate);
     }
+
+    public static List<Proyecto> calcularProyectos(List<Proyecto> proyectos) {
+        List<Proyecto> proximosProyectos = new ArrayList<>();
+        LocalDate fechaHoy = LocalDate.now();
+        LocalDate fechaProyecto;
+        for (Proyecto proyecto: proyectos) {
+            fechaProyecto = proyecto.getFin().toLocalDate();
+            long diasRestantes = ChronoUnit.DAYS.between(fechaHoy, fechaProyecto);
+            if(diasRestantes > 0 && diasRestantes < 14) {
+                proximosProyectos.add(proyecto);
+            }
+        }
+        return proximosProyectos;
+    }
+
+    public static List<Proyecto> proyectosActuales(List<Proyecto> proyectos) {
+        List<Proyecto> proyectosActuales = new ArrayList<>();
+        LocalDate fechaHoy = LocalDate.now();
+        LocalDate fechaInicio, fechaFin;
+        for(Proyecto proyecto: proyectos) {
+            fechaInicio = proyecto.getInicio().toLocalDate();
+            fechaFin = proyecto.getFin().toLocalDate();
+            if((ChronoUnit.DAYS.between(fechaHoy, fechaInicio) < 0) && (ChronoUnit.DAYS.between(fechaHoy, fechaFin) > 0)) {
+                proyectosActuales.add(proyecto);
+            }
+        }
+        return proyectosActuales;
+    }
+
+    public static List<Proyecto> proximosProyectos(List<Proyecto> proyectos) {
+        List<Proyecto> proximosProyectos = new ArrayList<>();
+        LocalDate fechaHoy = LocalDate.now();
+        LocalDate fechaInicio;
+        for(Proyecto proyecto: proyectos) {
+            fechaInicio = proyecto.getInicio().toLocalDate();
+            if((ChronoUnit.DAYS.between(fechaHoy, fechaInicio) > 0)) {
+                proximosProyectos.add(proyecto);
+            }
+        }
+        return proximosProyectos;
+    }
+
+    public static List<Proyecto> proyectosVencidos(List<Proyecto> proyectos) {
+        List<Proyecto> proyectosVencidos = new ArrayList<>();
+        LocalDate fechaHoy = LocalDate.now();
+        LocalDate fechaFin;
+        for(Proyecto proyecto: proyectos) {
+            fechaFin = proyecto.getFin().toLocalDate();
+            if((ChronoUnit.DAYS.between(fechaHoy, fechaFin) < 0)) {
+                proyectosVencidos.add(proyecto);
+            }
+        }
+        return proyectosVencidos;
+    }
 }

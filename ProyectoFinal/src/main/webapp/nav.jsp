@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="ServletPersona?">Dashboard</a>
+                <a class="nav-link" href="ServletPersona?accion=dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="ServletProyecto?accion=proyectos">Mis proyectos</a>

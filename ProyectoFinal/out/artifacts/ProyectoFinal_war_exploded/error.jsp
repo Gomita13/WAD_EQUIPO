@@ -5,6 +5,12 @@
   Time: 21:32
   To change this template use File | Settings | File Templates.
 --%>
+<%
+    String email = (String) session.getAttribute("email");
+    if(email == null) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
