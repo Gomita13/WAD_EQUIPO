@@ -34,8 +34,10 @@ public class ServletTarea extends HttpServlet {
                     this.eliminarTarea(request, response);
                     break;
                 default:
-                    System.out.println("Hola");
+                    response.sendRedirect("error.jsp");
             }
+        } else {
+            response.sendRedirect("error.jsp");
         }
     }
 
@@ -51,8 +53,10 @@ public class ServletTarea extends HttpServlet {
                     this.editarTarea(request, response);
                     break;
                 default:
-                    System.out.println("Hola");
+                    response.sendRedirect("error.jsp");
             }
+        } else {
+            response.sendRedirect("error.jsp");
         }
     }
 

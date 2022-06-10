@@ -1,5 +1,6 @@
 package com.ipn.mx.controlador;
 
+import com.ipn.mx.modelo.dao.PersonaDAO;
 import com.ipn.mx.modelo.dao.ProyectoDAO;
 import com.ipn.mx.modelo.dao.TareaDAO;
 import com.ipn.mx.modelo.entidades.Persona;
@@ -36,9 +37,12 @@ public class ServletProyecto extends HttpServlet {
                 case "eliminar":
                     eliminarProyecto(request, response);
                     break;
+                case "eliminarColaborador":
+                    eliminarColaborador(request, response);
+                    break;
                 default:
                     System.out.println("Aqui algo valió madre");
-                    mostrarMisProyectos(request, response);
+                    response.sendRedirect("error.jsp");
             }
         } else {
             response.sendRedirect("error.jsp");
@@ -60,9 +64,12 @@ public class ServletProyecto extends HttpServlet {
                 case "editarP":
                     editarProyecto(request, response);
                     break;
+                case "agregarColaborador":
+                    agregarColaborador(request, response);
+                    break;
                 default:
                     System.out.println("Algo valió madre");
-                    mostrarMisProyectos(request, response);
+                    response.sendRedirect("error.jsp");
             }
         } else {
             response.sendRedirect("error.jsp");
@@ -91,16 +98,10 @@ public class ServletProyecto extends HttpServlet {
         Proyecto proyectoRes = new ProyectoDAO().selectOne(proyecto);
         long diasRestantes = calcularDiasRestantes(proyectoRes);
         List<Persona> colaboradores = new ProyectoDAO().selectColaboradores(proyectoRes);
+        List<Persona> personas = new PersonaDAO().selectAll();
         List<Tarea> tareas = new TareaDAO().selectTareas(proyectoRes);
-        List<Tarea> tareasCompletadas = new ArrayList<>();
-        List<Tarea> tareasNoCompletadas = new ArrayList<>();
-        for (Tarea tarea : tareas) {
-            if (tarea.isCompletada()) {
-                tareasCompletadas.add(tarea);
-            } else {
-                tareasNoCompletadas.add(tarea);
-            }
-        }
+        List<Tarea> tareasCompletadas = ServletTarea.getTareasCompletadas(tareas);
+        List<Tarea> tareasNoCompletadas = ServletTarea.getTareasIncompletas(tareas);
         List<Tarea> misTareas = new TareaDAO().selectTareasEncargadoProyecto(encargado, proyectoRes);
         request.setAttribute("proyectoRes", proyectoRes);
         request.setAttribute("diasRestantes", diasRestantes);
@@ -109,6 +110,7 @@ public class ServletProyecto extends HttpServlet {
         request.setAttribute("misTareas", misTareas);
         request.setAttribute("colaboradores", colaboradores);
         request.setAttribute("usuario", emailEncargado);
+        request.setAttribute("personas", personas);
         request.getRequestDispatcher("project_details.jsp").forward(request, response);
     }
 
@@ -159,6 +161,28 @@ public class ServletProyecto extends HttpServlet {
         int registros = new ProyectoDAO().delete(proyecto);
         System.out.println("Registros eliminados " + registros);
         mostrarMisProyectos(request, response);
+    }
+
+    private void agregarColaborador (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        String nuevoColaborador = request.getParameter("nuevoColaborador");
+        Proyecto proyecto = new ProyectoDAO().selectOne(new Proyecto(nombreProyecto));
+        Persona persona = new PersonaDAO().selectOne(new Persona(nuevoColaborador));
+        int registros = new ProyectoDAO().insertColaborador(proyecto, persona);
+        System.out.println("Registros modificados " + registros);
+        request.setAttribute("nombreProyecto", nombreProyecto);
+        detallesProyecto(request, response);
+    }
+
+    private void eliminarColaborador (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nombreProyecto = request.getParameter("nombreProyecto");
+        String emailColaborador = request.getParameter("emailColaborador");
+        Proyecto proyecto = new ProyectoDAO().selectOne(new Proyecto(nombreProyecto));
+        Persona colaborador = new PersonaDAO().selectOne(new Persona(emailColaborador));
+        int registros = new ProyectoDAO().deleteColaborador(proyecto, colaborador);
+        System.out.println("Registros modificados " + registros);
+        request.setAttribute("nombreProyecto", nombreProyecto);
+        detallesProyecto(request, response);
     }
 
     private static long calcularDiasRestantes(Proyecto proyecto) {

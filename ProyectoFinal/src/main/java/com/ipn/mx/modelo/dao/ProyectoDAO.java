@@ -30,8 +30,9 @@ public class ProyectoDAO {
             "(?, ?)";
     private static final String SQL_UPDATE = "UPDATE proyecto SET nombreproyecto = ?, inicio = ?, fin = ? " +
             "WHERE nombreproyecto = ?";
-    private static final String UPDATE_ADMIN = "UPDATE proyecto SET administrador = ? where administrador = ?";
     private static final String SQL_DELETE = "DELETE FROM proyecto WHERE nombreproyecto = ?";
+    private static final String DELETE_COLABORADOR = "DELETE FROM colaborador WHERE nombreproyecto = ? AND " +
+            "emailpersona = ?";
 
     public List<Proyecto> selectAllProjects() {
         Connection conn = null;
@@ -217,15 +218,14 @@ public class ProyectoDAO {
         return rows;
     }
 
-    public int updateAdmin(Proyecto proyecto, String adminOld) {
+    public int delete(Proyecto proyecto) {
         Connection conn = null;
         PreparedStatement ps = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
-            ps = conn.prepareStatement(UPDATE_ADMIN);
-            ps.setString(1, proyecto.getAdministrador());
-            ps.setString(2, adminOld);
+            ps = conn.prepareStatement(SQL_DELETE);
+            ps.setString(1, proyecto.getNombreProyecto());
             rows = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -236,14 +236,15 @@ public class ProyectoDAO {
         return rows;
     }
 
-    public int delete(Proyecto proyecto) {
+    public int deleteColaborador(Proyecto proyecto, Persona persona) {
         Connection conn = null;
         PreparedStatement ps = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
-            ps = conn.prepareStatement(SQL_DELETE);
+            ps = conn.prepareStatement(DELETE_COLABORADOR);
             ps.setString(1, proyecto.getNombreProyecto());
+            ps.setString(2, persona.getEmail());
             rows = ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

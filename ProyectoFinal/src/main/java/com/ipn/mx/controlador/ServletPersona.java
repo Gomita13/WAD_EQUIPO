@@ -42,7 +42,7 @@ public class ServletPersona extends HttpServlet {
                     mostrarDashboard(request, response);
             }
         } else {
-            mostrarDashboard(request, response);
+            response.sendRedirect("error.jsp");
         }
     }
 

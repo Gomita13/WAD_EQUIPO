@@ -124,9 +124,33 @@
                     </c:otherwise>
                 </c:choose>
                 <td>${colaborador.getEmail()}</td>
+                <c:choose>
+                    <c:when test="${usuario.equals(proyectoRes.getAdministrador())}">
+                        <td>
+                            <a href="ServletProyecto?accion=eliminarColaborador&nombreProyecto=${proyectoRes.getNombreProyecto()}&emailColaborador=${colaborador.getEmail()}">
+                                Eliminar
+                            </a>
+                        </td>
+                    </c:when>
+                </c:choose>
             </tr>
         </c:forEach>
     </table>
+    <c:choose>
+        <c:when test="${usuario.equals(proyectoRes.getAdministrador())}">
+            <form action="ServletProyecto?accion=agregarColaborador&nombreProyecto=${proyectoRes.getNombreProyecto()}" method="post">
+                <label for="nuevoColaborador"></label>
+                <select name="nuevoColaborador" id="nuevoColaborador">
+                    <c:forEach var="persona" items="${personas}">
+                        <option value="${persona.getEmail()}">
+                                ${persona.getNombre()} ${persona.getApellidos()}
+                        </option>
+                    </c:forEach>
+                </select>
+                <input type="submit" value="Agregar colaborador">
+            </form>
+        </c:when>
+    </c:choose>
 </section>
 </body>
 </html>
