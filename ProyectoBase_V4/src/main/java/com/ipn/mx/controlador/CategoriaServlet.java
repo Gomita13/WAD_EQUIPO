@@ -159,8 +159,7 @@ public class CategoriaServlet extends HttpServlet {
         try {
             dto = dao.read(dto);
             request.setAttribute("dto", dto);
-            RequestDispatcher rd = request.getRequestDispatcher("/categoria/categoriaForm.jsp");
-            rd.forward(request, response);
+            request.getRequestDispatcher("/categoria/categoriaForm.jsp").forward(request, response);
         } catch (SQLException | ServletException | IOException ex) {
             Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -183,8 +182,8 @@ public class CategoriaServlet extends HttpServlet {
         CategoriaDAO dao = new CategoriaDAO();
         CategoriaDTO dto = new CategoriaDTO();
 
-        if (request.getAttribute("dto") == null) {
-
+        if (request.getParameter("txtId") == null || request.getParameter("txtId").equals("")) {
+            System.out.println("NO HAY DTO PERRO EN EL REQUEST");
             dto.getEntidad().setNombreCategoria(request.getParameter("txtNombre"));
             dto.getEntidad().setDescripcionCategoria(request.getParameter("txtDescripcion"));
 
@@ -195,6 +194,7 @@ public class CategoriaServlet extends HttpServlet {
                 Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
+            System.out.println("SI HAY DTO PERRO EN EL REQUEST");
             dto.getEntidad().setNombreCategoria(request.getParameter("txtNombre"));
             dto.getEntidad().setDescripcionCategoria(request.getParameter("txtDescripcion"));
             dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("txtId")));
