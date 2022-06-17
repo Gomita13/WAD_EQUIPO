@@ -2,8 +2,6 @@ package com.ipn.mx.modelo.dao;
 
 import com.ipn.mx.modelo.dto.CategoriaDTO;
 import com.ipn.mx.modelo.dto.DatosGraficaDTO;
-import org.apache.openejb.util.Connect;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
