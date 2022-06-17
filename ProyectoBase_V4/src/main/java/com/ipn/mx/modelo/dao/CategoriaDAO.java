@@ -1,6 +1,8 @@
 package com.ipn.mx.modelo.dao;
 
 import com.ipn.mx.modelo.dto.CategoriaDTO;
+import org.apache.openejb.util.Connect;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,7 +26,7 @@ public class CategoriaDAO {
 
     private Connection conexion;
 
-    private void obtenerConexion() {
+    public Connection obtenerConexion() {
         //obtener conexion
         String usuario = "root";
         String clave = "";
@@ -41,6 +43,7 @@ public class CategoriaDAO {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return conexion;
     }
 
     public void create(CategoriaDTO dto) throws SQLException{

@@ -4,10 +4,16 @@ import com.ipn.mx.modelo.dao.CategoriaDAO;
 import com.ipn.mx.modelo.dto.CategoriaDTO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperRunManager;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -39,7 +45,7 @@ public class CategoriaServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, JRException {
         response.setContentType("text/html;charset=UTF-8");
 
         String accion = request.getParameter("accion");
@@ -102,7 +108,11 @@ public class CategoriaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -116,7 +126,11 @@ public class CategoriaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -224,8 +238,18 @@ public class CategoriaServlet extends HttpServlet {
         }
     }
 
-    private void mostrarReporte(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void mostrarReporte(HttpServletRequest request, HttpServletResponse response) throws IOException, JRException {
+        CategoriaDAO dao = new CategoriaDAO();
+        ServletOutputStream sos = response.getOutputStream();
+        File reporte;
+        byte [] b;
+        reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/ReporteEstados.jasper"));
+        b = JasperRunManager.runReportToPdf(reporte.getPath(), null, dao.obtenerConexion());
+        response.setContentType("application/pdf");
+        response.setContentLength(b.length);
+        sos.write(b, 0, b.length);
+        sos.flush();
+        sos.close();
     }
 
     private void mostrarGrafica(HttpServletRequest request, HttpServletResponse response) {
