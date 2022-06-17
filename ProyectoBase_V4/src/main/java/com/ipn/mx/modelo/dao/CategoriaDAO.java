@@ -27,9 +27,9 @@ public class CategoriaDAO {
 
     public Connection obtenerConexion() {
         //obtener conexion
-        String usuario = "root";
-        String clave = "";
-        String url = "jdbc:mysql://localhost:3306/proyectobase4?serverTimezone=America/Mexico_City&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&useSSL=false";
+        String usuario = "unpgpxgfqs2g6enn";
+        String clave = "Xs49S7khnfNiWszpCMvU";
+        String url = "jdbc:mysql://unpgpxgfqs2g6enn:Xs49S7khnfNiWszpCMvU@b1arfzmfqdb9zupnwhyl-mysql.services.clever-cloud.com:3306/b1arfzmfqdb9zupnwhyl";
         //String url = "jdbc:mysql://localhost:3306/EscuelaWeb?
         //serverTimeZone=America/Mexico_City&allowPublicKeyRetrieval=true&
         //useSSL=false";
