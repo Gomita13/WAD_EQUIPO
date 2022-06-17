@@ -8,7 +8,7 @@
 <%
   String email = (String) session.getAttribute("email");
   if(email == null) {
-    response.sendRedirect("index.jsp");
+    response.sendRedirect("login.jsp");
   }
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

@@ -21,7 +21,7 @@
 
 h1{
     font-family: 'Pacifico', cursive;
-    font-size: xxx-large;
+    font-size: 30px;
     background: -webkit-linear-gradient(90deg, rgba(135,0,163,1) 15%, rgba(255,150,0,1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -41,7 +41,7 @@ label {
 }
 
 .login {
-    margin-right: 50px !important;
+    margin-right: 30px !important;
     width: 100px !important;
     border-color: transparent !important;
 }

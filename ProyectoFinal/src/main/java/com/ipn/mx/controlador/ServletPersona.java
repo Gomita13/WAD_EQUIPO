@@ -35,7 +35,7 @@ public class ServletPersona extends HttpServlet {
                     break;
                 case "logout":
                     request.getSession().invalidate();
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("login.jsp");
                     break;
                 case "generarReporte":
                     generarReporte(request, response);
@@ -79,7 +79,7 @@ public class ServletPersona extends HttpServlet {
         // Insertamos en la base de datos
         int registrosModificados = new PersonaDAO().insert(persona);
         System.out.println("Registros modificados " + registrosModificados);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("login.jsp");
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -97,7 +97,7 @@ public class ServletPersona extends HttpServlet {
             this.mostrarDashboard(request, response);
         } else {
             System.out.println("mamaste");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         }
     }
 
@@ -169,7 +169,7 @@ public class ServletPersona extends HttpServlet {
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
         if(email == null) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         }
         response.setContentType("application/pdf");
         OutputStream out = response.getOutputStream();
