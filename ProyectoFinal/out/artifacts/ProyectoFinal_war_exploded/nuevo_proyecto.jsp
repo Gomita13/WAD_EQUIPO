@@ -20,7 +20,7 @@
 <head>
     <title>Nuevo proyecto</title>
 </head>
-<body>
+<body style="overflow-x: hidden;">
 <jsp:include page="nav.jsp"/>
 <header>
   <div class="overlay">

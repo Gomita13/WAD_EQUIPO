@@ -12,7 +12,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" style="margin-left: 60%">
             <li class="nav-item">
                 <a class="nav-link" href="ServletPersona?accion=dashboard">Dashboard</a>
             </li>
@@ -26,6 +26,10 @@
                 <a class="nav-link" href="ServletPersona?accion=cuenta">Cuenta</a>
             </li>
         </ul>
-        <a href="ServletPersona?accion=logout">Cerrar sesión</a>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <a href="ServletPersona?accion=logout" style="margin-left: 5%"><span class="material-symbols-outlined">
+            logout
+            </span>
+        </a>
     </div>
 </nav>

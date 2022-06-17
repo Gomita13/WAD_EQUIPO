@@ -20,7 +20,7 @@
 <head>
     <title>Nueva tarea</title>
 </head>
-<body>
+<body style="overflow-x: hidden;">
 <jsp:include page="nav.jsp"/>
 <style>
     .encabezado {

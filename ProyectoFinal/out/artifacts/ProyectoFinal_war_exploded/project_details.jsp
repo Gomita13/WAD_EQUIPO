@@ -43,7 +43,7 @@
     </div>
 </header>
 <br><br>
-<section style="background-color: #ffffff;">
+<section style="background-color: #ffffff; overflow-x: hidden;">
     <div class="container py-5">
         <p>Fecha de inicio: ${proyectoRes.getInicio()}, Fecha de finalización: ${proyectoRes.getFin()}</p>
         <c:choose>

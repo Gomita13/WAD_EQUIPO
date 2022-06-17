@@ -18,7 +18,7 @@
     <jsp:param name="optionalStyle" value="css/perfil.css"/>
 </jsp:include>
 <jsp:include page="nav.jsp"/>
-<body>
+<body style="overflow-x: hidden;">
     <section style="background-image: url('https://i.pinimg.com/originals/a2/a4/f8/a2a4f856632dbdc7c13eb2c97d62ab79.jpg')">
         <div class="container py-5">
             <div class="row">

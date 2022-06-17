@@ -20,7 +20,7 @@
 <head>
     <title>Editar ${proyectoRes.getNombreProyecto()}</title>
 </head>
-<body style="background-image: url('https://img.wallpapersafari.com/desktop/1920/1080/18/98/5PS2iK.jpg')">
+<body style="background-image: url('https://img.wallpapersafari.com/desktop/1920/1080/18/98/5PS2iK.jpg'); overflow-x: hidden;">
 <jsp:include page="nav.jsp"/>
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">

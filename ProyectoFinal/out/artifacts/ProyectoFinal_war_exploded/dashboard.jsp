@@ -17,7 +17,7 @@
 <jsp:include page="head.jsp">
     <jsp:param name="optionalStyle" value="css/dashboard.css"/>
 </jsp:include>
-<body>
+<body style="overflow-x: hidden;">
 <jsp:include page="nav.jsp"/>
 <style>
     .encabezado {

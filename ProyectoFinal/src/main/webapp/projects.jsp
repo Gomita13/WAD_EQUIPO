@@ -36,7 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Condensed:wght@300&family=Ruluko&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/proyectos.css">
 </head>
-<body style="background-color: #eee">
+<body style="background-color: #eee; overflow-x: hidden;">
 <jsp:include page="nav.jsp"/>
     <style>
         .encabezado {

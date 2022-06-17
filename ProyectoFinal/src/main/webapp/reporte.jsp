@@ -43,7 +43,7 @@
         }
     </script>
 </head>
-<body>
+<body style="overflow-x: hidden;">
 <jsp:include page="nav.jsp"/>
 <style>
     .encabezado {
@@ -92,7 +92,7 @@
         </table>
     </div>
     <div class="col-lg-4">
-        <h2>Tareas pendientes</h2>
+        <h2>Tareas generadas</h2>
         <table class="table">
             <tbody>
                 <c:forEach var="tarea" items="${tareas}">
@@ -117,11 +117,14 @@
                 </tr>
                 <hr>
                 </c:forEach>
+            </tbody>
+        </table>
     </div>
 </div>
+<br>
 <div class="row" style="margin-left: 10%; margin-right: 10%; text-align: center">
-    <div class="col-lg-12">
-        <div id="chartContainer"></div>
+    <div class="col-lg-12" style="align-content: center">
+        <div id="chartContainer" style="width:80%; height: 80%;"></div>
     </div>
 </div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
