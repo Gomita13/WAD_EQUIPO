@@ -2,6 +2,7 @@ package com.ipn.mx.controlador;
 
 import com.ipn.mx.modelo.dao.CategoriaDAO;
 import com.ipn.mx.modelo.dto.CategoriaDTO;
+import com.ipn.mx.modelo.dto.DatosGraficaDTO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
@@ -12,12 +13,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperRunManager;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtils;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,7 +52,7 @@ public class CategoriaServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, JRException {
+            throws ServletException, IOException, JRException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
 
         String accion = request.getParameter("accion");
@@ -110,7 +117,7 @@ public class CategoriaServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (JRException e) {
+        } catch (JRException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -128,7 +135,7 @@ public class CategoriaServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (JRException e) {
+        } catch (JRException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -252,8 +259,22 @@ public class CategoriaServlet extends HttpServlet {
         sos.close();
     }
 
-    private void mostrarGrafica(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void mostrarGrafica(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
+        JFreeChart chart = ChartFactory.createPieChart("Articulos por categoria", getDatosGrafica(), true, true,
+                Locale.getDefault());
+        String archivo = getServletConfig().getServletContext().getRealPath("grafica.png");
+        ChartUtils.saveChartAsPNG(new File(archivo), chart, 800, 600);
+        request.getRequestDispatcher("grafica.jsp").forward(request, response);
     }
 
+    private PieDataset getDatosGrafica() throws SQLException {
+        DefaultPieDataset pie = new DefaultPieDataset();
+        CategoriaDAO dao = new CategoriaDAO();
+        List datos = dao.graficar();
+        for(int i = 0; i < datos.size(); i++) {
+            DatosGraficaDTO dto = (DatosGraficaDTO) datos.get(i);
+            pie.setValue(dto.getNombre(), dto.getCantidad());
+        }
+        return pie;
+    }
 }
