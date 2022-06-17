@@ -8,7 +8,7 @@
 <%
     String email = (String) session.getAttribute("email");
     if(email == null) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("login.jsp");
     }
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -22,9 +22,9 @@
     <style>
         :root {
             --clr-lightgreen: linear-gradient(to right, #84ffc9 0%, #aab2ff 100%);
-            --clr-dark-green: linear-gradient(to right, #4a9b7f 0%, #0a3431 100%);
-            --clr-light-pink: linear-gradient(to right, #7c65a9 0%, #96d4ca 100%);
-            --clr-light-lime: linear-gradient(to right, #ef32d9 0%, #89fffd 100%);
+            --clr-dark-green: linear-gradient(to right, #ca0867 0%, #0a3431 100%);
+            --clr-light-pink: linear-gradient(to right, #7c65a9 0%, #ff8847 100%);
+            --clr-light-lime: linear-gradient(to right, #ef32d9 0%, #ffd689 100%);
         }
     </style>
     <link rel="stylesheet" href="css/progressBar/progressBar.min.css">
@@ -36,14 +36,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Condensed:wght@300&family=Ruluko&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/proyectos.css">
 </head>
-<body>
+<body style="background-color: #eee; overflow-x: hidden;">
 <jsp:include page="nav.jsp"/>
+    <style>
+        .encabezado {
+            background: url('https://i.pinimg.com/originals/d5/15/50/d51550aec996b3107df3d6c46cc8eabd.jpg');
+            text-align: center;
+            color: #2c3034;
+            width: 100%;
+            height: auto;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 85% 85% / 30%;
+        }
+    </style>
+    <header class="encabezado">
+        <div class="overlay">
+            <br>
+            <br>
+            <h2 style="font-family: 'Pacifico', cursive; text-align: center; color: #2c3034; size: 18px">Mis proyectos</h2>
+            <br>
+            <br>
+        </div>
+    </header>
 <div class="container">
-    <h2 class="page-title">Mis proyectos</h2>
     <c:forEach var="proyecto" items="${misProyectos}">
         <div class="card">
             <div class="card-header">
-                <a href="ServletProyecto?accion=detalles&nombreProyecto=${proyecto.getNombreProyecto()}">
+                <a style="color: #2c3034" href="ServletProyecto?accion=detalles&nombreProyecto=${proyecto.getNombreProyecto()}">
                         ${proyecto.getNombreProyecto()}
                 </a>
             </div>
@@ -56,19 +78,19 @@
                                 <c:choose>
                                     <c:when test="${Double.isNaN(proyecto.getProgreso())}">
                                         <div class="ab-progress" data-progress data-value="0" data-fill="var(--clr-light-pink)" data-height="35"></div>
-                                        <a href="ServletProyecto?accion=editar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                                        <a class="btn btn-primary" style="border-color: #50b02a; background-color:#ffffff; color: #2c3034; width: 30%; margin-right: 15px; margin-top: 8px" href="ServletProyecto?accion=editar&nombreProyecto=${proyecto.getNombreProyecto()}">
                                             Editar proyecto
                                         </a>
-                                        <a href="ServletProyecto?accion=eliminar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                                        <a class="btn btn-primary" style="border-color: #b02a37; background-color:#ffffff; color: #2c3034; width: 30%; margin-top: 8px" href="ServletProyecto?accion=eliminar&nombreProyecto=${proyecto.getNombreProyecto()}">
                                             Eliminar proyecto
                                         </a>
                                     </c:when>
                                     <c:otherwise>
                                         <div class="ab-progress" data-progress data-value="${proyecto.getProgreso()}" data-fill="var(--clr-light-pink)" data-height="35"></div>
-                                        <a href="ServletProyecto?accion=editar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                                        <a class="btn btn-primary" style="border-color: #50b02a; background-color:#ffffff; color: #2c3034; width: 30%; margin-right: 15px; margin-top: 8px" href="ServletProyecto?accion=editar&nombreProyecto=${proyecto.getNombreProyecto()}">
                                             Editar proyecto
                                         </a>
-                                        <a href="ServletProyecto?accion=eliminar&nombreProyecto=${proyecto.getNombreProyecto()}">
+                                        <a class="btn btn-primary" style="border-color: #b02a37; background-color:#ffffff; color: #2c3034; width: 30%; margin-top: 8px" href="ServletProyecto?accion=eliminar&nombreProyecto=${proyecto.getNombreProyecto()}">
                                             Eliminar proyecto
                                         </a>
                                     </c:otherwise>
@@ -92,7 +114,8 @@
             </div>
         </div>
     </c:forEach>
-    <a href="nuevo_proyecto.jsp"> Nuevo proyecto </a>
+    <br>
+    <a class="btn btn-primary" style="border-color: #a30095; background-color:#ca0867; color: #ffffff" href="nuevo_proyecto.jsp"> Nuevo proyecto </a>
     <script src="js/progressBar/jquery-3.6.0.min.js"></script>
     <script src="js/progressBar/jquery.easing.min.js"></script>
     <script src="js/progressBar/noframework.waypoints.min.js"></script>

@@ -4,12 +4,24 @@
     margin-bottom: 1em;
     margin-top: 1em;
 }
+header {
+    background: url('https://i.pinimg.com/736x/a8/fd/33/a8fd33f012f4a5370f8a5b047893480d.jpg');
+    text-align: center;
+    color: #2c3034;
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 85% 85% / 30%;
+}
 
 .status-bar {
     width: 200px !important;
     border-radius: 2em;
     height: 20px !important;
-    background: -webkit-linear-gradient(90deg, rgba(0,163,24,1) 15%, rgba(0,255,77,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgb(163, 0, 149) 15%, rgb(255, 166, 0) 100%);
 }
 
 .card-header{
@@ -33,4 +45,13 @@
 .date{
     font-family: 'Roboto Condensed', sans-serif;
     margin-bottom: 6px !important;
+}
+
+.nuevop {
+    width: 3%;
+    height: 3%;
+    border-radius: 5px;
+    color: #ffae64;
+    background-color: #7c65a9;
+    border-color: #bf4955;
 }

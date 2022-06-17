@@ -7,8 +7,6 @@
           <element id="module-output" name="ProyectoFinal" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="application" name="postgresql-42.3.6" />
-          <element id="library" level="project" name="jakarta.servlet.jsp.jstl.api" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.3.6" />
           <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.5.0" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-dbcp2:2.9.0" />

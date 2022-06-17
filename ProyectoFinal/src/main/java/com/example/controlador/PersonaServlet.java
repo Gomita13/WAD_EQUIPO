@@ -19,7 +19,7 @@ public class PersonaServlet extends HttpServlet {
             switch (accion){
                 case 0: //cerrar sesion
                     request.getSession().invalidate();
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("login.jsp");
                     break;
                 case 1: //eliminar una persona
                     break;
@@ -63,7 +63,7 @@ public class PersonaServlet extends HttpServlet {
         PersonaDAO dao = new PersonaDAO();
 
         if(dao.insert(dto)){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         }else{
             response.sendRedirect("error.jsp");
         }
@@ -82,7 +82,7 @@ public class PersonaServlet extends HttpServlet {
             iniciada.setAttribute("email",res.getEntidad().getEmail());
             response.sendRedirect("dashboard.jsp");
         }else{
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         }
     }
 }

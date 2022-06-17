@@ -22,7 +22,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="card-body p-md-5 mx-md-4">
-                                    <h1>WebOS</h1>
+                                    <h1>Task manager</h1>
                                     <form action="ServletPersona?accion=insertar" method="post">
                                         <p>Crear una cuenta</p>
                                         <div class="form-outline mb-4">
@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">¿Ya tienes cuenta?</p>
-                                            <a href="index.jsp"><button type="button" class="btn btn-outline-danger">Inicia sesión</button></a>
+                                            <a href="login.jsp"><button type="button" class="btn btn-outline-danger">Inicia sesión</button></a>
                                         </div>
                                     </form>
                                 </div>

@@ -1,0 +1,14 @@
+.card{
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.p{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.page-title {
+    font-family: 'Pacifico', cursive;
+    font-size: xx-large;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
