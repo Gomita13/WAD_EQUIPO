@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="default">
+        <class>com.ipn.mx.modelo.entidades.Articulo</class>
+        <class>com.ipn.mx.modelo.entidades.Categoria</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://ec2-23-20-224-166.compute-1.amazonaws.com/da9r8ho8gh9d5l"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.connection.username" value="pzdfndhbctvihu"/>
+            <property name="hibernate.connection.password" value="5f4ee506545185fb778b6a28ae4643de03b4afcdb1e033da120e428eb3453f00"/>
+        </properties>
+    </persistence-unit>
+</persistence>
